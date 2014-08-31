@@ -1,6 +1,6 @@
 {
     "id" : "CommonWorld",
-    "version" : "0.1.0",
+    "version" : "0.1.1",
     "author" : "msteiger",
     "displayName" : "CommonWorld",
     "description" : "Provides common classes for different world generators",
