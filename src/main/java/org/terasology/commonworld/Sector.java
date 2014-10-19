@@ -19,19 +19,26 @@ package org.terasology.commonworld;
 import javax.vecmath.Point2i;
 
 import org.terasology.math.Vector2i;
+import org.terasology.math.Rect2i;
 
 /**
  * Defines a square-shaped terrain sector
  * @author Martin Steiger
  */
 public final class Sector {
-    
+
     /**
      * Measured in blocks
      */
     public static final int SIZE = 1024;
-    
+
+    public static final int SIZE_X = 1024;
+    public static final int SIZE_Z = 1024;
+
     private final Point2i coords;
+
+    private final Rect2i bounds;
+
 
     /**
      * @param coords the coordinates
@@ -40,8 +47,9 @@ public final class Sector {
         if (coords == null) {
             throw new NullPointerException("coords cannot be null");
         }
-        
+
         this.coords = coords;
+        this.bounds = Rect2i.createFromMinAndSize(coords.x * SIZE_X, coords.y * SIZE_Z, SIZE_X, SIZE_Z);
     }
 
     /**
@@ -50,17 +58,17 @@ public final class Sector {
     public Point2i getCoords() {
         return coords;
     }
-    
+
     /**
      * @param dir the orientation which gives the neighbor index in [0..8]
      * @return the neighbor sector
      */
     public Sector getNeighbor(Orientation dir) {
-        
+
         Vector2i v = dir.getDir();
         int x = coords.x + v.x;
         int z = coords.y + v.y;
-        
+
         return Sectors.getSector(new Point2i(x, z));
     }
 
@@ -79,22 +87,27 @@ public final class Sector {
         if (this == obj) {
             return true;
         }
-        
+
         if (obj == null) {
             return false;
         }
-        
+
         if (getClass() != obj.getClass()) {
             return false;
         }
-        
+
         Sector other = (Sector) obj;
 
         // coords cannot be null
         return coords.equals(other.coords);
     }
 
-    
-    
+    /**
+     * @return the bounds in (block) world coordinates
+     */
+    public Rect2i getWorldBounds() {
+        return bounds;
+    }
+
 }
 
