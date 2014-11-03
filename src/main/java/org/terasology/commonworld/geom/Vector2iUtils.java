@@ -16,17 +16,17 @@
 
 package org.terasology.commonworld.geom;
 
-import javax.vecmath.Point2i;
+import org.terasology.math.Vector2i;
 
 import org.terasology.math.TeraMath;
 
 /**
- * Some {@link Point2i}-related utilities
+ * Some {@link Vector2i}-related utilities
  * @author Martin Steiger
  */
-public final class Point2iUtils {
+public final class Vector2iUtils {
     
-    private Point2iUtils() {
+    private Vector2iUtils() {
         // private constructor
     }
     
@@ -35,7 +35,7 @@ public final class Point2iUtils {
      * @param p1 the other point
      * @return the distance in between
      */
-    public static double distance(Point2i p0, Point2i p1) {
+    public static double distance(Vector2i p0, Vector2i p1) {
         double dx;
         double dy; 
 
@@ -49,7 +49,7 @@ public final class Point2iUtils {
      * @param p1 the other point
      * @return the squared distance
      */
-    public static double distanceSquared(Point2i p0, Point2i p1) {
+    public static double distanceSquared(Vector2i p0, Vector2i p1) {
         double dx;
         double dy; 
 
@@ -65,11 +65,11 @@ public final class Point2iUtils {
      * @param alpha the alpha interpolation parameter
      * @return the new point
      */
-   public static Point2i interpolate(Point2i p1, Point2i p2, double alpha) { 
+   public static Vector2i interpolate(Vector2i p1, Vector2i p2, double alpha) { 
         int x = TeraMath.floorToInt(0.5 + (1 - alpha) * p1.x + alpha * p2.x);
         int y = TeraMath.floorToInt(0.5 + (1 - alpha) * p1.y + alpha * p2.y);
 
-        return new Point2i(x, y);
+        return new Vector2i(x, y);
    } 
     
 }

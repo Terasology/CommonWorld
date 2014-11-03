@@ -16,7 +16,7 @@
 
 package org.terasology.commonworld.symmetry;
 
-import javax.vecmath.Point2i;
+import org.terasology.math.Vector2i;
 
 
 /**
@@ -26,12 +26,12 @@ import javax.vecmath.Point2i;
 public abstract class AbstractSymmetry implements Symmetry {
 
     @Override
-    public boolean isMirrored(Point2i v) {
+    public boolean isMirrored(Vector2i v) {
         return isMirrored(v.x, v.y);
     }
     
     @Override
-    public Point2i getMirrored(Point2i v) {
+    public Vector2i getMirrored(Vector2i v) {
         return getMirrored(v.x, v.y);
     }
 

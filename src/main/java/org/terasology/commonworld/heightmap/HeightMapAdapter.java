@@ -16,8 +16,6 @@
 
 package org.terasology.commonworld.heightmap;
 
-import javax.vecmath.Point2i;
-
 import org.terasology.math.Vector2i;
 
 /**
@@ -27,13 +25,7 @@ import org.terasology.math.Vector2i;
 public abstract class HeightMapAdapter implements HeightMap {
 
     @Override
-    public int apply(Point2i input) {
-        return apply(input.x, input.y);
-    }
-
-    @Override
     public Integer apply(Vector2i input) {
         return apply(input.x, input.y);
     }
-
 }

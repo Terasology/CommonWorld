@@ -16,14 +16,14 @@
 
 package org.terasology.commonworld.symmetry;
 
-import javax.vecmath.Point2i;
+import org.terasology.math.Vector2i;
 
 /**
  * Provides access to different symmetries
  * @author Martin Steiger
  */
 public final class Symmetries {
-    
+
     private Symmetries() {
         // avoid instantiation
     }
@@ -38,13 +38,14 @@ public final class Symmetries {
             public boolean isMirrored(int x, int z) {
                 return (z < 0);
             }
-            
-            public Point2i getMirrored(int x, int z) {
-                return new Point2i(x, -z - 1);
+
+            @Override
+            public Vector2i getMirrored(int x, int z) {
+                return new Vector2i(x, -z - 1);
             }
         };
     }
-    
+
     /**
      * @return a height map that is mirror along the x axis (1, 0)
      */
@@ -55,13 +56,14 @@ public final class Symmetries {
             public boolean isMirrored(int x, int z) {
                 return (x < 0);
             }
-            
-            public Point2i getMirrored(int x, int z) {
-                return new Point2i(-x - 1, z);
+
+            @Override
+            public Vector2i getMirrored(int x, int z) {
+                return new Vector2i(-x - 1, z);
             }
         };
     }
-    
+
     /**
      * @return a height map that is mirror along the diagonal (1, 1)
      */
@@ -72,14 +74,14 @@ public final class Symmetries {
             public boolean isMirrored(int x, int z) {
                 return (x > z);
             }
-            
+
             @Override
-            public Point2i getMirrored(int x, int z) {
-                return new Point2i(z, x);
+            public Vector2i getMirrored(int x, int z) {
+                return new Vector2i(z, x);
             }
         };
     }
- 
+
     /**
      * @return a height map that is mirror along the diagonal (1, -1)
      */
@@ -90,11 +92,11 @@ public final class Symmetries {
             public boolean isMirrored(int x, int z) {
                 return (x + z < 0);
             }
-            
+
             @Override
-            public Point2i getMirrored(int x, int z) {
+            public Vector2i getMirrored(int x, int z) {
                 int dist = x + z + 1;
-                return new Point2i(x - dist, z - dist);
+                return new Vector2i(x - dist, z - dist);
             }
         };
     }

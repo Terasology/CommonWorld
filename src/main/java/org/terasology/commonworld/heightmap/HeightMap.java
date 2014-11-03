@@ -16,8 +16,6 @@
 
 package org.terasology.commonworld.heightmap;
 
-import javax.vecmath.Point2i;
-
 import org.terasology.math.Vector2i;
 
 import com.google.common.base.Function;
@@ -34,6 +32,4 @@ public interface HeightMap extends Function<Vector2i, Integer> {
      * @return the height
      */
     int apply(int x, int z);
-
-    int apply(Point2i p);
 }

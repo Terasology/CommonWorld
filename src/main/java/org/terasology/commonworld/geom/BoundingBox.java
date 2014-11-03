@@ -19,12 +19,12 @@ package org.terasology.commonworld.geom;
 import java.awt.Rectangle;
 import java.util.Collection;
 
-import javax.vecmath.Point2i;
+import org.terasology.math.Vector2i;
 
 import com.google.common.base.Optional;
 
 /**
- * Defines a axis-aligned bounding box based on a set of Point2is 
+ * Defines a axis-aligned bounding box based on a set of Vector2is 
  * @author Martin Steiger
  */
 public class BoundingBox {
@@ -46,9 +46,9 @@ public class BoundingBox {
     }
 
     /**
-     * @param pt the initial Point2i 
+     * @param pt the initial Vector2i 
      */
-    public BoundingBox(Point2i pt) {
+    public BoundingBox(Vector2i pt) {
         x1 = pt.x;
         y1 = pt.y;
         x2 = pt.x;
@@ -58,18 +58,18 @@ public class BoundingBox {
     }
 
     /**
-     * @param pts the initial Point2is 
+     * @param pts the initial Vector2is 
      */
-    public BoundingBox(Collection<Point2i> pts) {
+    public BoundingBox(Collection<Vector2i> pts) {
         this();
         addAll(pts);
     }
     
     /**
-     * @param pts a collection of Point2is
+     * @param pts a collection of Vector2is
      * @return the bounding rectangle of pts or absent() if pts is empty
      */
-    public static Optional<Rectangle> getBoundingRect(Collection<Point2i> pts) {
+    public static Optional<Rectangle> getBoundingRect(Collection<Vector2i> pts) {
         if (pts.isEmpty()) {
             return Optional.absent();
         }
@@ -80,18 +80,18 @@ public class BoundingBox {
     
     /**
      * Resizes to include pt
-     * @param pt the Point2i
+     * @param pt the Vector2i
      */
-    public void add(Point2i pt) {
+    public void add(Vector2i pt) {
         add(pt.x, pt.y);
     }
 
     /**
-     * Resizes to include all Point2is
-     * @param pts a collection of Point2is
+     * Resizes to include all Vector2is
+     * @param pts a collection of Vector2is
      */
-    public void addAll(Collection<Point2i> pts) {
-        for (Point2i pt : pts) {
+    public void addAll(Collection<Vector2i> pts) {
+        for (Vector2i pt : pts) {
             add(pt.x, pt.y);
         }
     }

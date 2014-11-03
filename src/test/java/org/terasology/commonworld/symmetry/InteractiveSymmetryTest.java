@@ -27,7 +27,7 @@ import java.awt.geom.Line2D;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.vecmath.Point2i;
+import org.terasology.math.Vector2i;
 
 /**
  * A interactive test for different {@link Symmetry} implementations.
@@ -63,7 +63,7 @@ public final class InteractiveSymmetryTest {
                 int centerY = getHeight() / (2 * scale);
                 g.scale(scale, scale);
 
-                Point2i mp = new Point2i(pt.x / scale, pt.y / scale);
+                Vector2i mp = new Vector2i(pt.x / scale, pt.y / scale);
 
                 double mouseX = mp.getX() + 0.5;
                 double mouseY = mp.getY() + 0.5;
