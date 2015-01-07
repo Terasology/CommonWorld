@@ -20,9 +20,8 @@ import java.math.RoundingMode;
 import java.util.Map;
 
 import org.terasology.math.Vector2i;
-import javax.vecmath.Vector3f;
-
 import org.terasology.math.TeraMath;
+import org.terasology.math.geom.Vector3f;
 
 import com.google.common.collect.Maps;
 import com.google.common.math.IntMath;
@@ -32,9 +31,9 @@ import com.google.common.math.IntMath;
  * @author Martin Steiger
  */
 public final class Sectors {
-    
+
     private static final Map<Vector2i, Sector> SECTORS = Maps.newConcurrentMap();
-    
+
     private Sectors() {
         // private
     }
@@ -54,13 +53,13 @@ public final class Sectors {
      */
     public static Sector getSector(Vector2i coord) {
         Sector sector = SECTORS.get(coord);
-        
+
         if (sector == null) {
             sector = new Sector(coord);
-            
+
             SECTORS.put(coord, sector);
         }
-        
+
         return sector;
     }
 
@@ -69,9 +68,9 @@ public final class Sectors {
      * @return the sector
      */
     public static Sector getSectorForPosition(Vector3f pos) {
-        return getSectorForBlock(TeraMath.floorToInt(pos.x), TeraMath.floorToInt(pos.z));
+        return getSectorForBlock(TeraMath.floorToInt(pos.getX()), TeraMath.floorToInt(pos.getZ()));
     }
-    
+
     /**
      * @param wx the world block x coord
      * @param wz the world block z coord
@@ -80,7 +79,7 @@ public final class Sectors {
     public static Sector getSectorForBlock(int wx, int wz) {
         int sx = IntMath.divide(wx, Sector.SIZE, RoundingMode.FLOOR);
         int sz = IntMath.divide(wz, Sector.SIZE, RoundingMode.FLOOR);
-        
+
         return getSector(new Vector2i(sx, sz));
     }
 }
