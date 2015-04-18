@@ -162,7 +162,7 @@ public class Point2md extends Point2d {
      * Subtracts a point from this point
      * @param sx the subtracted x value
      * @param sy the subtracted y value
-     *
+     */
     public void sub(double sx, double sy) {
         x -= sx;
         y -= sy;
@@ -220,25 +220,25 @@ public class Point2md extends Point2d {
         if (this == obj) {
             return true;
         }
-        
+
         if (obj == null) {
             return false;
         }
-        
+
         if (getClass() != obj.getClass()) {
             return false;
         }
-        
+
         Point2md other = (Point2md) obj;
-        
+
         if (Double.doubleToLongBits(x) != Double.doubleToLongBits(other.x)) {
             return false;
         }
-        
+
         if (Double.doubleToLongBits(y) != Double.doubleToLongBits(other.y)) {
             return false;
         }
-        
+
         return true;
     }
 

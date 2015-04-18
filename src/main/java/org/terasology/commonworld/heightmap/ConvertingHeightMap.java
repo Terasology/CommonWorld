@@ -38,7 +38,7 @@ public class ConvertingHeightMap extends HeightMapAdapter {
     }
 
     /**
-     * Adds a conversion from -> to
+     * Adds a conversion
      * @param from from
      * @param to to
      */
