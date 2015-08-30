@@ -19,7 +19,7 @@ package org.terasology.commonworld;
 import java.math.RoundingMode;
 import java.util.Map;
 
-import org.terasology.math.Vector2i;
+import org.terasology.math.geom.Vector2i;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.Vector3f;
 

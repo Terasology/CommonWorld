@@ -16,13 +16,13 @@
 
 package org.terasology.commonworld;
 
-import org.terasology.math.Vector2i;
-
-import org.terasology.math.Rect2i;
+import org.terasology.math.geom.BaseVector2i;
+import org.terasology.math.geom.ImmutableVector2i;
+import org.terasology.math.geom.Vector2i;
+import org.terasology.math.geom.Rect2i;
 
 /**
  * Defines a square-shaped terrain sector
- * @author Martin Steiger
  */
 public final class Sector {
 
@@ -34,7 +34,7 @@ public final class Sector {
     public static final int SIZE_X = 1024;
     public static final int SIZE_Z = 1024;
 
-    private final Vector2i coords;
+    private final ImmutableVector2i coords;
 
     private final Rect2i bounds;
 
@@ -42,19 +42,19 @@ public final class Sector {
     /**
      * @param coords the coordinates
      */
-    Sector(Vector2i coords) {
+    Sector(BaseVector2i coords) {
         if (coords == null) {
             throw new NullPointerException("coords cannot be null");
         }
 
-        this.coords = coords;
-        this.bounds = Rect2i.createFromMinAndSize(coords.x * SIZE_X, coords.y * SIZE_Z, SIZE_X, SIZE_Z);
+        this.coords = ImmutableVector2i.createOrUse(coords);
+        this.bounds = Rect2i.createFromMinAndSize(coords.getX() * SIZE_X, coords.getY() * SIZE_Z, SIZE_X, SIZE_Z);
     }
 
     /**
      * @return the coordinates
      */
-    public Vector2i getCoords() {
+    public ImmutableVector2i getCoords() {
         return coords;
     }
 
@@ -64,16 +64,16 @@ public final class Sector {
      */
     public Sector getNeighbor(Orientation dir) {
 
-        Vector2i v = dir.getDir();
-        int x = coords.x + v.x;
-        int z = coords.y + v.y;
+        ImmutableVector2i v = dir.getDir();
+        int x = coords.getX() + v.getX();
+        int z = coords.getY() + v.getY();
 
         return Sectors.getSector(new Vector2i(x, z));
     }
 
     @Override
     public String toString() {
-        return "Sector [" + coords.x + ", " + coords.y + "]";
+        return "Sector [" + coords.getX() + ", " + coords.getY() + "]";
     }
 
     @Override

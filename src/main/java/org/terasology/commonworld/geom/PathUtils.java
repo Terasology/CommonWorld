@@ -19,29 +19,30 @@ package org.terasology.commonworld.geom;
 import java.awt.geom.Path2D;
 import java.util.List;
 
-import org.terasology.math.Vector2i;
+import org.terasology.math.geom.Vector2i;
+import org.terasology.math.geom.BaseVector2i;
 
 /**
  * Some spline-related utilities
  * @author Martin Steiger
  */
 public final class PathUtils {
-    
+
     private PathUtils() {
         // private
     }
-    
+
     /**
      * @param points a list of points
      * @return a path of connected line segments
      */
-    public static Path2D createSegmentPath(List<Vector2i> points) {
+    public static Path2D createSegmentPath(List<? extends BaseVector2i> points) {
         Path2D path = new Path2D.Double();
 
         path.moveTo(points.get(0).getX(), points.get(0).getY());
 
         for (int i = 0; i < points.size() - 1; i++) {
-            Vector2i p1 = points.get(i + 1);
+            BaseVector2i p1 = points.get(i + 1);
             path.lineTo(p1.getX(), p1.getY());
         }
 
@@ -61,7 +62,7 @@ public final class PathUtils {
         if (pts.isEmpty()) {
             return path;
         }
-        
+
         path.moveTo(pts.get(0).x, pts.get(0).y);
 
         for (int i = 0; i < pts.size() - 1; i++) {
@@ -73,7 +74,7 @@ public final class PathUtils {
 
         return path;
     }
- 
+
     private static Vector2i add(Vector2i a, Vector2i b) {
         return new Vector2i(a.x + b.x, a.y + b.y);
     }

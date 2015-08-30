@@ -16,7 +16,7 @@
 
 package org.terasology.commonworld.heightmap;
 
-import org.terasology.math.Vector2i;
+import org.terasology.math.geom.BaseVector2i;
 
 /**
  * A partial implementation of {@link HeightMap}
@@ -25,7 +25,7 @@ import org.terasology.math.Vector2i;
 public abstract class HeightMapAdapter implements HeightMap {
 
     @Override
-    public Integer apply(Vector2i input) {
-        return apply(input.x, input.y);
+    public Integer apply(BaseVector2i input) {
+        return apply(input.getX(), input.getY());
     }
 }

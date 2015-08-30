@@ -27,7 +27,7 @@ import java.awt.geom.Line2D;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import org.terasology.math.Vector2i;
+import org.terasology.math.geom.Vector2i;
 
 /**
  * A interactive test for different {@link Symmetry} implementations.

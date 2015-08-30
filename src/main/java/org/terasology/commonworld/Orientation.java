@@ -18,8 +18,7 @@ package org.terasology.commonworld;
 
 import java.util.EnumMap;
 
-import org.terasology.math.Vector2i;
-
+import org.terasology.math.geom.ImmutableVector2i;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
 
@@ -28,47 +27,47 @@ import com.google.common.collect.Maps;
  * @author Martin Steiger
  */
 public enum Orientation {
-    
+
     /**
      * North (0, -1)
      */
     NORTH(0, -1),
-    
+
     /**
      * North-East (1, -1)
      */
     NORTHEAST(1, -1),
-    
+
     /**
      * East (1, 0)
      */
     EAST(1, 0),
-    
+
     /**
-     * South-East (1, 1) 
+     * South-East (1, 1)
      */
     SOUTHEAST(1, 1),
-    
+
     /**
      * South (0, 1)
      */
     SOUTH(0, 1),
-    
+
     /**
      * South-West (-1, 1)
      */
     SOUTHWEST(-1, 1),
-    
+
     /**
      * West (-1, 0)
      */
     WEST(-1, 0),
-    
+
     /**
      * North-West (-1, -1)
      */
     NORTHWEST(-1, -1);
-    
+
     private static final EnumMap<Orientation, Orientation> OPPOSITES = Maps.newEnumMap(Orientation.class);
     private static final EnumMap<Orientation, Orientation> ROTATE_CW = Maps.newEnumMap(Orientation.class);
     private static final EnumMap<Orientation, Orientation> ROTATE_CCW = Maps.newEnumMap(Orientation.class);
@@ -101,11 +100,11 @@ public enum Orientation {
         ROTATE_CCW.put(EAST, NORTHEAST);
         ROTATE_CCW.put(NORTHEAST, NORTH);
     }
-    
-    private final Vector2i dir;
+
+    private final ImmutableVector2i dir;
 
     Orientation(int dx, int dz) {
-        this.dir = new Vector2i(dx, dz);
+        this.dir = new ImmutableVector2i(dx, dz);
     }
 
     /**
@@ -122,7 +121,7 @@ public enum Orientation {
         // there is no need for Objects.equals(), comparing with == is safe here
         return this == NORTH || this == WEST || this == SOUTH || this == EAST;
     }
-    
+
     /**
      * @param degrees the rotation in degrees at 45° intervals (clockwise)
      * @return the orientation
@@ -135,11 +134,11 @@ public enum Orientation {
         if (norm < 0) {
             norm += 360;
         }
-        
+
         if (norm == 0) {
             return this;
         }
-        
+
         if (norm == 180) {
             return OPPOSITES.get(this);
         }
@@ -147,24 +146,24 @@ public enum Orientation {
         Orientation result = this;
 
         // this requires 3 map lookups maximum
-        
+
         while (norm < 180 && norm > 0) {
             result = ROTATE_CW.get(result);
             norm -= 45;
         }
-        
+
         while (norm > 180 && norm < 360) {
             result = ROTATE_CCW.get(result);
             norm += 45;
         }
-        
+
         return result;
     }
-    
+
     /**
      * @return the orientation
      */
-    public Vector2i getDir() {
+    public ImmutableVector2i getDir() {
         return this.dir;
     }
 }

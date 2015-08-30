@@ -16,7 +16,7 @@
 
 package org.terasology.commonworld.symmetry;
 
-import org.terasology.math.Vector2i;
+import org.terasology.math.geom.Vector2i;
 
 /**
  * Provides access to different symmetries

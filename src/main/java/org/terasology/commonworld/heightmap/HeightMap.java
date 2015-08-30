@@ -16,7 +16,7 @@
 
 package org.terasology.commonworld.heightmap;
 
-import org.terasology.math.Vector2i;
+import org.terasology.math.geom.BaseVector2i;
 
 import com.google.common.base.Function;
 
@@ -24,7 +24,7 @@ import com.google.common.base.Function;
  * Definition of a height map
  * @author Martin Steiger
  */
-public interface HeightMap extends Function<Vector2i, Integer> {
+public interface HeightMap extends Function<BaseVector2i, Integer> {
 
     /**
      * @param x the x world coord
