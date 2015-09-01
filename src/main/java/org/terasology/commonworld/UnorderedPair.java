@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 MovingBlocks
+ * Copyright 2015 MovingBlocks
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,12 +16,13 @@
 
 package org.terasology.commonworld;
 
-import java.util.Objects;
+import com.google.common.base.Preconditions;
 
 /**
- * Overrides equals() so that [a, b] equals [b, a]
+ * Defines an unordered tuple of two objects of the same type.
+ * The methods equals() and hashCode() are implemented so that the pair (a, b) and (b, a) have the
+ * same hash code and equals() returns true.
  * @param <T> the element type
- * @author Martin Steiger
  */
 public final class UnorderedPair<T> {
 
@@ -29,14 +30,17 @@ public final class UnorderedPair<T> {
     private final T b;
 
     /**
-     * @param a city a
-     * @param b city b
+     * Constructs a pair based on two instances.
+     * @param a one element, never <code>null</code>.
+     * @param b another element, never <code>null</code>.
      */
     public UnorderedPair(T a, T b) {
+        Preconditions.checkArgument(a != null && b != null, "argument must not be null");
+
         this.a = a;
         this.b = b;
     }
-    
+
     /**
      * @return one element of the pair
      */
@@ -53,8 +57,10 @@ public final class UnorderedPair<T> {
 
     @Override
     public int hashCode() {
-        // hash code must be equal for [a, b] and [b, a]
-        return Math.max(Objects.hash(a, b), Objects.hash(b, a));
+        // the hash code must be equal for [a, b] and [b, a]
+        // perform xor with a large prime number to avoid degenerate hash codes
+        // Otherwise, if one of the two hash codes was zero the result would be zero, too
+        return (a.hashCode() ^ 1262887) * (b.hashCode() ^ 1262887);
     }
 
     @Override
@@ -62,25 +68,25 @@ public final class UnorderedPair<T> {
         if (this == obj) {
             return true;
         }
-        
+
         if (obj == null) {
             return false;
         }
-        
+
         if (obj.getClass() != getClass()) {
             return false;
         }
-        
+
         UnorderedPair<?> that = (UnorderedPair<?>) obj;
-        
-        return (Objects.equals(this.a, that.a) && Objects.equals(this.b, that.b))
-            || (Objects.equals(this.a, that.b) && Objects.equals(this.b, that.a));
+
+        return (a.equals(that.a) && b.equals(that.b))
+            || (a.equals(that.b) && b.equals(that.a));
     }
 
     @Override
     public String toString() {
-        return "UnorderedPair [" + this.a + ", " + this.b + "]";
+        return "UnorderedPair [" + a + ", " + b + "]";
     }
 
-    
+
 }
