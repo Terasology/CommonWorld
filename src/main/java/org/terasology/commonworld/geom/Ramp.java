@@ -16,17 +16,18 @@
 
 package org.terasology.commonworld.geom;
 
+import org.terasology.math.TeraMath;
 import org.terasology.math.geom.BaseVector3f;
 import org.terasology.math.geom.BaseVector3i;
 
 /**
  * A plane that is defined by two points.
- * The missing third point is derived by a horizontal (dz = 0) line.
+ * The missing third point is derived by a horizontal (dy = 0) line.
  * The result is a ramp.
  * <pre>
  *  ( ex )   ( ax )     ( dx )     ( -dy )
- *  ( ey ) = ( ay ) + L ( dy ) + K (  dx )
- *  ( ez )   ( az )     ( dz )     (  0  )
+ *  ( ey ) = ( ay ) + L ( dy ) + K (  0  )
+ *  ( ez )   ( az )     ( dz )     (  dx )
  *
  *  ex = ax + L*dx - K*dy
  *
@@ -35,11 +36,11 @@ import org.terasology.math.geom.BaseVector3i;
  *             dy
  *
  *
- *  ey = ay + L*dy + K*dx
+ *  ez = az + L*dz + K*dx
  *
- *        (ey*dy - ay*dy - ax*dx + ex*dx)
+ *        (ez*dz - az*dz - ax*dx + ex*dx)
  *  L = -----------------------------------
- *                  (dy^2 + dx^2)
+ *                  (dz^2 + dx^2)
  *
  *  ez = az * L*dz
  * </pre>
@@ -99,49 +100,61 @@ public class Ramp {
     /**
      * Finds the lambda value <b>along</b> the line. p0 has a lambda of 0, p1 has a lambda of 1
      * @param ex point x
-     * @param ey point y
+     * @param ez point z
      * @return the lambda value
      */
-    public float getLambda(float ex, float ey) {
-        return (ey * dy - ay * dy - ax * dx + ex * dx) / (dy * dy + dx * dx);
+    public float getLambda(float ex, float ez) {
+        return (ez * dz - az * dz - ax * dx + ex * dx) / (dz * dz + dx * dx);
     }
 
     /**
      * Finds the norm. lambda value <b>along</b> the line. p0 has a norm. lambda of 0, p1 has a lambda of dist(p0, p1).
      * @param ex point x
-     * @param ey point y
+     * @param ez point z
      * @return the normalized lambda value
      */
-    public float getLambdaNorm(float ex, float ey) {
-        return (float) (getLambda(ex, ey) * Math.sqrt(dx * dx + dy * dy));
+    public float getLambdaNorm(float ex, float ez) {
+        return (float) (getLambda(ex, ez) * Math.sqrt(dx * dx + dz * dz));
     }
 
     /**
+     * The y value at that point. For points outside the area, the value can be higher than
+     * the given y values of p0 and p1.
      * @param ex point x
-     * @param ey point y
+     * @param ez point z
      * @return the z value at that point (depends on lambda only)
      */
-    public float getZ(float ex, float ey) {
-        return az + getLambda(ex, ey) * dz;
+    public float getY(float ex, float ez) {
+        return ay + getLambda(ex, ez) * dy;
     }
 
     /**
-     * Finds the distance from the line p0, p1 relative to that distance
+     * The y value at that point, clamped to given min/max y values of p0 and p1.
      * @param ex point x
-     * @param ey point y
+     * @param ez point z
+     * @return the y value at that point (depends on lambda only)
+     */
+    public float getClampedY(float ex, float ez) {
+        return ay + TeraMath.clamp(getLambda(ex, ez), 0, 1) * dy;
+    }
+
+    /**
+     * Finds the signed distance from the line p0, p1 relative to that distance
+     * @param ex point x
+     * @param ez point z
      * @return the kappa value
      */
-    public float getKappa(float ex, float ey) {
-        return (ax + getLambda(ex, ey) * dx - ex) / dy;
+    public float getKappa(float ex, float ez) {
+        return (ax + getLambda(ex, ez) * dx - ex) / dz;
     }
 
     /**
-     * Finds the distance from the line p0, p1 in absolute units
+     * Finds the signed distance from the line p0, p1 in absolute units
      * @param ex point x
-     * @param ey point y
+     * @param ez point z
      * @return the norm. kappa value
      */
-    public float getKappaNorm(float ex, float ey) {
-        return (float) (getKappa(ex, ey) * Math.sqrt(dx * dx + dy * dy));
+    public float getKappaNorm(float ex, float ez) {
+        return (float) (getKappa(ex, ez) * Math.sqrt(dx * dx + dz * dz));
     }
 }
