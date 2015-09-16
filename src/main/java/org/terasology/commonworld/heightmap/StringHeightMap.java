@@ -22,7 +22,7 @@ import java.util.List;
  * Reads heightmap information from a list of strings
  * @author Martin Steiger
  */
-class StringHeightMap extends HeightMapAdapter {
+class StringHeightMap implements HeightMap {
 
     private final List<String> data;
 

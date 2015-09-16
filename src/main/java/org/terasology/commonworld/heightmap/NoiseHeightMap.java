@@ -16,37 +16,30 @@
 
 package org.terasology.commonworld.heightmap;
 
-import org.terasology.utilities.procedural.BrownianNoise2D;
-import org.terasology.utilities.procedural.Noise2D;
+import org.terasology.utilities.procedural.BrownianNoise;
+import org.terasology.utilities.procedural.Noise;
 import org.terasology.utilities.procedural.SimplexNoise;
 
 /**
  * A simple implementation based on {@link SimplexNoise}
  * @author Martin Steiger
  */
-public class NoiseHeightMap extends HeightMapAdapter {
+public class NoiseHeightMap implements HeightMap {
 
-    private Noise2D terrainNoise;
-
-    /**
-     * Setup default noise-based height map
-     */
-    public NoiseHeightMap() {
-        setSeed("default");
-    }
+    private Noise terrainNoise;
 
     /**
      * @param seed the seed value
      */
-    public NoiseHeightMap(String seed) {
+    public NoiseHeightMap(long seed) {
         setSeed(seed);
     }
 
     /**
      * @param seed the seed value
      */
-    public void setSeed(String seed) {
-        terrainNoise = new BrownianNoise2D(new SimplexNoise(seed.hashCode()), 6);
+    public void setSeed(long seed) {
+        terrainNoise = new BrownianNoise(new SimplexNoise(seed), 6);
     }
 
     @Override

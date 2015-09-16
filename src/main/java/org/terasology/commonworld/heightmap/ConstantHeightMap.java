@@ -20,7 +20,7 @@ package org.terasology.commonworld.heightmap;
  * An implementation based on a constant value
  * @author Martin Steiger
  */
-class ConstantHeightMap extends HeightMapAdapter {
+class ConstantHeightMap implements HeightMap {
 
     private final int height;
 

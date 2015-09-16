@@ -16,15 +16,20 @@
 
 package org.terasology.commonworld.heightmap;
 
-import org.terasology.math.geom.BaseVector2i;
+import java.util.function.Function;
 
-import com.google.common.base.Function;
+import org.terasology.math.geom.BaseVector2i;
 
 /**
  * Definition of a height map
  * @author Martin Steiger
  */
 public interface HeightMap extends Function<BaseVector2i, Integer> {
+
+    @Override
+    default Integer apply(BaseVector2i input) {
+        return Integer.valueOf(apply(input.getX(), input.getY()));
+    }
 
     /**
      * @param x the x world coord

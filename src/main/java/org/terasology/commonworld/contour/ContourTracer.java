@@ -24,12 +24,11 @@ import java.util.List;
 import org.terasology.commonworld.array.Arrays2D;
 import org.terasology.commonworld.array.IntArray2D;
 import org.terasology.commonworld.heightmap.HeightMap;
-import org.terasology.commonworld.heightmap.HeightMapAdapter;
 
 /**
- * Heavily inspired by sample code from the book 
+ * Heavily inspired by sample code from the book
  * <p>
- * "Digital Image Processing - An Algorithmic Introduction using Java" 
+ * "Digital Image Processing - An Algorithmic Introduction using Java"
  * by Wilhelm Burger and Mark J. Burge
  * </p>
  * <pre>
@@ -68,12 +67,12 @@ public class ContourTracer {
         this.height = rc.height;
         this.offX = rc.x;
         this.offY = rc.y;
-        
+
         labelArray = Arrays2D.create(width, height, 0, (byte) 0);
         labelArray = Arrays2D.ignoreOutOfBounds(labelArray, (byte) 0);
         labelArray = Arrays2D.translate(labelArray, -rc.x, -rc.y);
-        
-        this.dataMap = new HeightMapAdapter() {
+
+        this.dataMap = new HeightMap() {
 
             @Override
             public int apply(int x, int z) {
@@ -85,7 +84,7 @@ public class ContourTracer {
                 if (x == rc.x + width || z == rc.y + height) {
                     return BACKGROUND;
                 }
-                
+
                 if (orgHm.apply(x, z) > threshold) {
                     return BACKGROUND;
                 } else {
@@ -104,7 +103,7 @@ public class ContourTracer {
             innerContours = new ArrayList<>();
             findAllContours();
         }
-        
+
         return outerContours;
     }
 
@@ -117,7 +116,7 @@ public class ContourTracer {
             innerContours = new ArrayList<>();
             findAllContours();
         }
-        
+
         return innerContours;
     }
 
@@ -137,17 +136,17 @@ public class ContourTracer {
 
         int xT; // T = successor of starting point (xS,yS)
         int yT;
-        
+
         int xP; // P = previous contour point
         int yP;
-        
+
         int xC; // C = current contour point
         int yC;
-        
+
         Point pt = new Point(xS, yS);
         int dNext = findNextPoint(pt, dS);
         cont.addPoint(pt);
-        
+
         xP = xS;
         yP = yS;
         xT = pt.x;
@@ -175,7 +174,7 @@ public class ContourTracer {
         return cont;
     }
 
-    /** 
+    /**
      * @param pt the start point (<b>modified during op</b>)
      * @param startDir the start search direction
      * @return the final tracing direction
@@ -183,11 +182,11 @@ public class ContourTracer {
     private int findNextPoint(Point pt, int startDir) {
 
         final int[][] delta = {
-            {+1, 0}, {+1, +1}, {0, +1}, {-1, +1}, 
+            {+1, 0}, {+1, +1}, {0, +1}, {-1, +1},
             {-1, 0}, {-1, -1}, {0, -1}, {+1, -1}};
 
         int dir = startDir;
-        
+
         for (int i = 0; i < 7; i++) {
             int x = pt.x + delta[dir][0];
             int y = pt.y + delta[dir][1];
@@ -202,11 +201,11 @@ public class ContourTracer {
         }
         return dir;
     }
-    
+
     private void findAllContours() {
         int label = 0; // current label
         int maxLabel = 0;
-        
+
         // scan top to bottom, left to right
         for (int v = offY; v < offY + height; v++) {
             label = 0; // no label

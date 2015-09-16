@@ -24,7 +24,7 @@ import org.terasology.math.geom.Rect2i;
  * A cache that stores a rectangular area
  * @author Martin Steiger
  */
-class CachingHeightMap extends HeightMapAdapter {
+class CachingHeightMap implements HeightMap {
 
     private static final Logger logger = LoggerFactory.getLogger(CachingHeightMap.class);
 

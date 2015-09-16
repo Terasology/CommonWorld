@@ -71,7 +71,7 @@ public final class HeightMaps {
      * @return An height map that returns values at (x * scale, z * scale)
      */
     public static HeightMap scalingArea(final HeightMap hm, final int scale) {
-        return new HeightMapAdapter() {
+        return new HeightMap() {
 
             @Override
             public int apply(int x, int z) {
@@ -86,7 +86,7 @@ public final class HeightMaps {
      * @return An height map that returns y * scale
      */
     public static HeightMap scalingHeight(final HeightMap hm, final int scale) {
-        return new HeightMapAdapter() {
+        return new HeightMap() {
 
             @Override
             public int apply(int x, int z) {
@@ -109,7 +109,7 @@ public final class HeightMaps {
      * @return a symmetric height map
      */
     public static HeightMap symmetric(final HeightMap hm, final Symmetry sym) {
-        return new HeightMapAdapter() {
+        return new HeightMap() {
             @Override
             public int apply(int x, int z) {
                 if (sym.isMirrored(x, z)) {
@@ -127,7 +127,7 @@ public final class HeightMaps {
      * @return a height map that is mirror along the diagonal (1, -1)
      */
     public static HeightMap fromArray2D(final IntArray2D array) {
-        return new HeightMapAdapter() {
+        return new HeightMap() {
 
             @Override
             public int apply(int x, int z) {

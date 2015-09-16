@@ -20,7 +20,7 @@ package org.terasology.commonworld.heightmap;
  * An implementation that returns other.height + offset
  * @author Martin Steiger
  */
-class OffsetHeightMap extends HeightMapAdapter {
+class OffsetHeightMap implements HeightMap {
 
     private final int offset;
     private final HeightMap base;

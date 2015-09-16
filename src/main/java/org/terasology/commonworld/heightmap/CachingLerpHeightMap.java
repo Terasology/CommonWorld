@@ -25,7 +25,7 @@ import org.terasology.math.geom.Rect2i;
  * A cache that stores a rectangular area and interpolates values bi-linearly
  * @author Martin Steiger
  */
-class CachingLerpHeightMap extends HeightMapAdapter {
+class CachingLerpHeightMap implements HeightMap {
 
     private static final Logger logger = LoggerFactory.getLogger(CachingLerpHeightMap.class);
 
