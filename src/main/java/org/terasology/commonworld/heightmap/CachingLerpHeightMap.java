@@ -16,11 +16,10 @@
 
 package org.terasology.commonworld.heightmap;
 
-import java.awt.Rectangle;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.terasology.math.TeraMath;
+import org.terasology.math.geom.Rect2i;
 
 /**
  * A cache that stores a rectangular area and interpolates values bi-linearly
@@ -31,7 +30,7 @@ class CachingLerpHeightMap extends HeightMapAdapter {
     private static final Logger logger = LoggerFactory.getLogger(CachingLerpHeightMap.class);
 
     private final short[] height;
-    private final Rectangle area;
+    private final Rect2i area;
     private final HeightMap hm;
     private final int scale;
     private int scaledWidth;
@@ -42,21 +41,21 @@ class CachingLerpHeightMap extends HeightMapAdapter {
      * @param hm the height map to use
      * @param scale the scale level
      */
-    public CachingLerpHeightMap(Rectangle area, HeightMap hm, int scale) {
+    public CachingLerpHeightMap(Rect2i area, HeightMap hm, int scale) {
         this.area = area;
         this.scale = scale;
         this.hm = hm;
 
-        this.scaledWidth = area.width / scale + 1;
-        this.scaledHeight = area.height / scale + 1;
+        this.scaledWidth = area.width() / scale + 1;
+        this.scaledHeight = area.height() / scale + 1;
 
         // if scale is not a divisor of the width -> round up
-        if (area.width % scale > 0) {
+        if (area.width() % scale > 0) {
             scaledWidth++;
         }
 
         // if scale is not a divisor of the height -> round up
-        if (area.height % scale > 0) {
+        if (area.height() % scale > 0) {
             scaledHeight++;
         }
 
@@ -65,7 +64,7 @@ class CachingLerpHeightMap extends HeightMapAdapter {
         // area is 1 larger
         for (int z = 0; z < scaledHeight; z++) {
             for (int x = 0; x < scaledWidth; x++) {
-                int y = hm.apply(area.x + x * scale, area.y + z * scale);
+                int y = hm.apply(area.minX() + x * scale, area.minY() + z * scale);
                 height[z * scaledWidth + x] = (short) y;
             }
         }
@@ -73,13 +72,13 @@ class CachingLerpHeightMap extends HeightMapAdapter {
 
     @Override
     public int apply(int x, int z) {
-        boolean xOk = (x >= area.x) && (x < area.x + area.width);
-        boolean zOk = (z >= area.y) && (z < area.y + area.height);
+        boolean xOk = (x >= area.minX()) && (x <= area.maxX());
+        boolean zOk = (z >= area.minY()) && (z <= area.maxY());
 
         if (xOk && zOk) {
 
-            double lx = (x - area.x) / (double) scale;
-            double lz = (z - area.y) / (double) scale;
+            double lx = (x - area.minX()) / (double) scale;
+            double lz = (z - area.minY()) / (double) scale;
 
             int minX = TeraMath.floorToInt(lx);
             int maxX = minX + 1;

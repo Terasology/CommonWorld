@@ -16,11 +16,11 @@
 
 package org.terasology.commonworld.heightmap;
 
-import java.awt.Rectangle;
 import java.util.List;
 
 import org.terasology.commonworld.array.IntArray2D;
 import org.terasology.commonworld.symmetry.Symmetry;
+import org.terasology.math.geom.Rect2i;
 
 import com.google.common.math.IntMath;
 
@@ -40,7 +40,7 @@ public final class HeightMaps {
      * @param scale the scale level (should be a divisor of area.width and area.height)
      * @return An height map based on the given constant value
      */
-    public static HeightMap caching(HeightMap hm, Rectangle area, int scale) {
+    public static HeightMap caching(HeightMap hm, Rect2i area, int scale) {
         if (scale == 1) {
             return new CachingHeightMap(area, hm);
         } else {
