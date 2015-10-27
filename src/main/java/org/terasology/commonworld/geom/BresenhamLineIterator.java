@@ -15,7 +15,7 @@
  */
 package org.terasology.commonworld.geom;
 
-import org.terasology.math.Vector2i;
+import org.terasology.math.geom.Vector2i;
 
 import java.util.EnumSet;
 import java.util.Set;

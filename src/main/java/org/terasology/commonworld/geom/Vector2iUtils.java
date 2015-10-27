@@ -16,9 +16,8 @@
 
 package org.terasology.commonworld.geom;
 
-import org.terasology.math.Vector2i;
-
 import org.terasology.math.TeraMath;
+import org.terasology.math.geom.Vector2i;
 
 /**
  * Some {@link Vector2i}-related utilities
