@@ -26,7 +26,6 @@ import com.google.common.math.IntMath;
 
 /**
  * Provides access to different height maps
- * @author Martin Steiger
  */
 public final class HeightMaps {
 

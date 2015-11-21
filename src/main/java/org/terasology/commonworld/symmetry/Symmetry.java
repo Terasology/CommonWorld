@@ -21,7 +21,6 @@ import org.terasology.math.geom.Vector2i;
 
 /**
  * Defines a symmetry
- * @author Martin Steiger
  */
 public interface Symmetry {
 

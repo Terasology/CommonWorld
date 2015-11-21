@@ -20,18 +20,17 @@ import java.util.Arrays;
 
 /**
  * Defines a 2D array with a padding border
- * @author Martin Steiger
  */
 class IntArray2DImpl implements IntArray2D {
     private final int border;
-    
+
     private final int[][] data;
 
     private final int width;
     private final int height;
-    
+
     /**
-     * @param width the width 
+     * @param width the width
      * @param height the height
      * @param border the border thickness around
      * @param initVal the initial value
@@ -40,13 +39,13 @@ class IntArray2DImpl implements IntArray2D {
         data = new int[height + border * 2][width + border * 2];
         this.width = width;
         this.height = height;
-        
+
         if (initVal != 0) {
             for (int[] row : data) {
                 Arrays.fill(row, initVal);
             }
         }
-        
+
         this.border = border;
     }
 

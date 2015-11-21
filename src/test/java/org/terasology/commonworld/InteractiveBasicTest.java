@@ -28,13 +28,11 @@ import java.awt.geom.Line2D;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-import org.terasology.commonworld.symmetry.Symmetry;
 import org.terasology.math.geom.Vector2i;
 
 /**
- * A interactive test for different {@link Symmetry} implementations.
+ * An interactive test.
  * Use the main method to start.
- * @author Martin Steiger
  */
 public final class InteractiveBasicTest {
 

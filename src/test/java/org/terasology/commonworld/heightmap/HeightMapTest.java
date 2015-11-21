@@ -29,7 +29,6 @@ import org.terasology.commonworld.symmetry.Symmetry;
 
 /**
  * Some tests on {@link HeightMap}s
- * @author Martin Steiger
  */
 public class HeightMapTest {
 

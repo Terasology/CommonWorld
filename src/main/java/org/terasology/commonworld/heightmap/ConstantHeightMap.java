@@ -18,7 +18,6 @@ package org.terasology.commonworld.heightmap;
 
 /**
  * An implementation based on a constant value
- * @author Martin Steiger
  */
 class ConstantHeightMap implements HeightMap {
 

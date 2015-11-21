@@ -35,7 +35,6 @@ import com.google.common.collect.Lists;
 
 /**
  * Tests {@link ContourTracer}
- * @author Martin Steiger
  */
 public class ContourTracingTest {
 

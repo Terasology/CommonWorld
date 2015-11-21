@@ -34,7 +34,6 @@ import org.terasology.commonworld.heightmap.HeightMap;
  * <pre>
  * https://github.com/biometrics/imagingbook
  * </pre>
- * @author Martin Steiger
  */
 public class ContourTracer {
     private static final byte FOREGROUND = 1;

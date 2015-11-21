@@ -18,12 +18,11 @@ package org.terasology.commonworld.array;
 
 /**
  * Delegates all method calls to a given instance
- * @author Martin Steiger
  */
 public class DelegatingIntArray2D implements IntArray2D {
 
     private final IntArray2D delegate;
-    
+
     /**
      * @param delegate the object to delegate calls to
      */

@@ -35,8 +35,6 @@ import org.terasology.math.TeraMath;
 
 /**
  * Not really a JUnit test class, but rather a 'visual proof by example'.
- *
- * @author Martin Steiger
  */
 public final class BresenhamTest {
 

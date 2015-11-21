@@ -22,7 +22,6 @@ import org.terasology.math.geom.BaseVector2i;
 
 /**
  * Definition of a height map
- * @author Martin Steiger
  */
 public interface HeightMap extends Function<BaseVector2i, Integer> {
 

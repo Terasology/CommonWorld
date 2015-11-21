@@ -22,7 +22,6 @@ import com.google.common.collect.Maps;
 
 /**
  * Converts height map data w.r.t. a map-based conversion
- * @author Martin Steiger
  */
 public class ConvertingHeightMap implements HeightMap {
 

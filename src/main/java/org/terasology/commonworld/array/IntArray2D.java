@@ -18,7 +18,6 @@ package org.terasology.commonworld.array;
 
 /**
  * A 2D array based on ints
- * @author Martin Steiger
  */
 public interface IntArray2D {
 
@@ -40,7 +39,7 @@ public interface IntArray2D {
      * @return the width of the array
      */
     int getWidth();
-    
+
     /**
      * @return the height of the array
      */

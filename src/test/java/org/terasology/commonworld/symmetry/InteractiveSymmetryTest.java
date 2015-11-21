@@ -32,7 +32,6 @@ import org.terasology.math.geom.Vector2i;
 /**
  * A interactive test for different {@link Symmetry} implementations.
  * Use the main method to start.
- * @author Martin Steiger
  */
 public final class InteractiveSymmetryTest {
 

@@ -15,15 +15,14 @@
  */
 package org.terasology.commonworld.geom;
 
-import org.terasology.math.geom.Vector2i;
-
 import java.util.EnumSet;
 import java.util.Set;
 
-/**
- * Created by Skaldarnar on 07.03.2015.
- */
-public class BresenhamLineIterator {
+public final class BresenhamLineIterator {
+
+    private BresenhamLineIterator() {
+        // no instances
+    }
 
     /**
      * Overlap mode

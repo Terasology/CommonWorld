@@ -30,9 +30,7 @@ import org.junit.Test;
 
 /**
  * Tests {@link Orientation}
- * @author Martin Steiger
  */
-@SuppressWarnings("javadoc")
 public class OrientationTest {
 
     @Test

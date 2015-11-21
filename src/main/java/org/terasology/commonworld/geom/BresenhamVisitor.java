@@ -15,9 +15,6 @@
  */
 package org.terasology.commonworld.geom;
 
-/**
- * Created by Skaldarnar on 11.03.2015.
- */
 public interface BresenhamVisitor {
 
     void visit(int x, int y);

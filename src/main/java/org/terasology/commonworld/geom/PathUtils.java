@@ -24,7 +24,6 @@ import org.terasology.math.geom.BaseVector2i;
 
 /**
  * Some spline-related utilities
- * @author Martin Steiger
  */
 public final class PathUtils {
 

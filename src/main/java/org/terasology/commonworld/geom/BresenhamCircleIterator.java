@@ -18,10 +18,8 @@ package org.terasology.commonworld.geom;
 
 /**
  * Draws and/or fills circles
- *
- * @author Martin Steiger
  */
-public class BresenhamCircleIterator {
+public final class BresenhamCircleIterator {
 
     private BresenhamCircleIterator() { }
 

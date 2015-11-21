@@ -20,7 +20,6 @@ import org.terasology.math.geom.Vector2i;
 
 /**
  * Provides access to different symmetries
- * @author Martin Steiger
  */
 public final class Symmetries {
 

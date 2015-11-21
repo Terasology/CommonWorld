@@ -18,7 +18,6 @@ package org.terasology.commonworld.heightmap;
 
 /**
  * An implementation that returns other.height + offset
- * @author Martin Steiger
  */
 class OffsetHeightMap implements HeightMap {
 

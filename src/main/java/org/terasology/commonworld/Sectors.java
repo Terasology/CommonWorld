@@ -28,7 +28,6 @@ import com.google.common.math.IntMath;
 
 /**
  * Gives access to all Sectors
- * @author Martin Steiger
  */
 public final class Sectors {
 

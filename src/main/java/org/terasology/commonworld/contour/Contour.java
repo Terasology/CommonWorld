@@ -27,13 +27,12 @@ import com.google.common.collect.Lists;
 
 /**
  * Stores information on a contour
- * @author Martin Steiger
  */
 public class Contour {
 
     /**
-     * It would be nice a have a list implementation where contains() runs in O(1). 
-     * Unfortunately, LinkedHashSet removes duplicate entries. 
+     * It would be nice a have a list implementation where contains() runs in O(1).
+     * Unfortunately, LinkedHashSet removes duplicate entries.
      */
     private final List<Point> points = new ArrayList<Point>();
     private Collection<Point> simplifiedPoints;
@@ -44,7 +43,7 @@ public class Contour {
      */
     public void addPoint(Point n) {
         points.add(new Point(n));
-        
+
         simplifiedPoints = null;
         polygon = null;
     }
@@ -55,7 +54,7 @@ public class Contour {
      */
     private static Polygon createPolygon(Collection<Point> pts) {
         int m = pts.size();
-        
+
         int[] xPoints = new int[m];
         int[] yPoints = new int[m];
         int idx = 0;
@@ -67,7 +66,7 @@ public class Contour {
         return new Polygon(xPoints, yPoints, m);
     }
 
-    
+
     /**
      * Removes all points that lie on straight lines
      * @param pts the list of points
@@ -103,7 +102,7 @@ public class Contour {
 
         return result;
     }
-    
+
     /**
      * @return an unmodifiable sorted view on the points
      */
@@ -112,7 +111,7 @@ public class Contour {
     }
 
     /**
-     * @return a simplified version of the curve, containing only points at direction changes 
+     * @return a simplified version of the curve, containing only points at direction changes
      */
     public Collection<Point> getSimplifiedCurve() {
         if (simplifiedPoints == null) {
@@ -121,7 +120,7 @@ public class Contour {
 
         return simplifiedPoints;
     }
-    
+
     /**
      * @return a polygon representing the curve
      */
@@ -129,10 +128,10 @@ public class Contour {
         if (polygon == null) {
             polygon = createPolygon(getSimplifiedCurve());
         }
-        
+
         return polygon;
     }
-    
+
     /**
      * A point is considered to lie inside if and only if:
      * <ul>
@@ -166,10 +165,10 @@ public class Contour {
         for (Point pt : points) {
             c.addPoint(new Point(pt.x + tx, pt.y + ty));
         }
-        
+
         return c;
     }
-    
+
     /**
      * @param scale the scale factor
      * @return the scaled contour
@@ -180,7 +179,7 @@ public class Contour {
         for (Point pt : points) {
             c.addPoint(new Point(pt.x * scale, pt.y * scale));
         }
-        
+
         return c;
     }
 }

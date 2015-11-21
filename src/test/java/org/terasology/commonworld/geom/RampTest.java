@@ -22,7 +22,7 @@ import org.terasology.math.geom.BaseVector3f;
 import org.terasology.math.geom.Vector3f;
 
 /**
- * TODO Type description
+ * Tests the {@link Ramp} class.
  */
 public class RampTest {
 

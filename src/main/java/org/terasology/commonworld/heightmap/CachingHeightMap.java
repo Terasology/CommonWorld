@@ -22,7 +22,6 @@ import org.terasology.math.geom.Rect2i;
 
 /**
  * A cache that stores a rectangular area
- * @author Martin Steiger
  */
 class CachingHeightMap implements HeightMap {
 

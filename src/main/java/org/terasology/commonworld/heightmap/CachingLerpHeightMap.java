@@ -23,7 +23,6 @@ import org.terasology.math.geom.Rect2i;
 
 /**
  * A cache that stores a rectangular area and interpolates values bi-linearly
- * @author Martin Steiger
  */
 class CachingLerpHeightMap implements HeightMap {
 

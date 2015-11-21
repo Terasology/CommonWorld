@@ -20,7 +20,6 @@ import java.util.List;
 
 /**
  * Reads heightmap information from a list of strings
- * @author Martin Steiger
  */
 class StringHeightMap implements HeightMap {
 

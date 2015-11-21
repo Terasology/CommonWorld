@@ -19,9 +19,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import org.terasology.math.geom.Vector2i;
 
-/**
- * Created by Skaldarnar on 11.03.2015.
- */
 public class BresenhamCollectorVisitor implements BresenhamVisitor {
 
     private Collection<Vector2i> line;
@@ -40,6 +37,6 @@ public class BresenhamCollectorVisitor implements BresenhamVisitor {
 
     @Override
     public void visit(int x, int y) {
-        line.add(new Vector2i(x,y));
+        line.add(new Vector2i(x, y));
     }
 }

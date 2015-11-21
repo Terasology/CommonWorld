@@ -22,7 +22,6 @@ import org.terasology.utilities.procedural.SimplexNoise;
 
 /**
  * A simple implementation based on {@link SimplexNoise}
- * @author Martin Steiger
  */
 public class NoiseHeightMap implements HeightMap {
 

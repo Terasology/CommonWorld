@@ -20,7 +20,6 @@ import java.awt.Color;
 
 /**
  * A simple interface for drawing
- * @author Martin Steiger
  */
 public interface PixelDrawer {
 

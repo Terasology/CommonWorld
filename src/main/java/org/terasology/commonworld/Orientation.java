@@ -26,7 +26,6 @@ import com.google.common.collect.Maps;
 
 /**
  * Defines orientation in a cartographic sense
- * @author Martin Steiger
  */
 public enum Orientation {
 

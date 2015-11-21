@@ -22,7 +22,6 @@ import org.terasology.math.geom.Vector2i;
 
 /**
  * An abstract partial implementation of {@link Symmetry}
- * @author Martin Steiger
  */
 public abstract class AbstractSymmetry implements Symmetry {
 
