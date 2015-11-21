@@ -18,7 +18,9 @@ package org.terasology.commonworld;
 
 import java.util.EnumMap;
 
+import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.ImmutableVector2i;
+
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
 
@@ -165,6 +167,27 @@ public enum Orientation {
      */
     public ImmutableVector2i getDir() {
         return this.dir;
+    }
+
+    /**
+     * Finds the best-matching cardinal orientation.
+     * @param dir an arbitrary direction vector
+     * @return either EAST, WEST, NORTH or SOUTH
+     */
+    public static Orientation cardinalFromDirection(BaseVector2i dir) {
+        if (Math.abs(dir.x()) >= Math.abs(dir.y())) {
+            if (dir.x() > 0) {
+                return Orientation.EAST;
+            } else {
+                return Orientation.WEST;
+            }
+        } else {
+            if (dir.y() > 0) {
+                return Orientation.SOUTH;
+            } else {
+                return Orientation.NORTH;
+            }
+        }
     }
 }
 
