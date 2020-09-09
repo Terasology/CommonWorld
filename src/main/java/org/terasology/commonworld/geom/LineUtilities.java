@@ -1,64 +1,5 @@
-/*
- * Copyright 2013 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * -------------------------------------------
- * - THIS FILE IS ACTUALLY UNDER BSD-LICENSE -
- * -------------------------------------------
- * 
- * JFreeChart : a free chart library for the Java(tm) platform
- *
- * Project Info:  http://www.jfree.org/jfreechart/index.html
- *
- * Copyright (c) 2008, Object Refinery Limited and Contributors.
- * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *     * Redistributions of source code must retain the above copyright
- *       notice, this list of conditions and the following disclaimer.
- *     * Redistributions in binary form must reproduce the above copyright
- *       notice, this list of conditions and the following disclaimer in the
- *       documentation and/or other materials provided with the distribution.
- *     * Neither the name of Object Refinery Limited nor the
- *       names of its contributors may be used to endorse or promote products
- *       derived from this software without specific prior written permission.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL Object Refinery Limited BE LIABLE FOR ANY
- * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
- * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * ------------------
- * LineUtilities.java
- * ------------------
- * (C) Copyright 2008, by Object Refinery Limited and Contributors.
- *
- * Original Author:  David Gilbert (for Object Refinery Limited);
- * Contributor(s):   -;
- *
- * Changes
- * -------
- * 05-Nov-2008 : Version 1 (DG);
- *
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.commonworld.geom;
 
@@ -67,7 +8,7 @@ import java.awt.geom.Rectangle2D;
 
 /**
  * Some utility methods for {@link Line2D} objects.
- * 
+ *
  * @since 1.0.12
  */
 public final class LineUtilities {
@@ -78,10 +19,9 @@ public final class LineUtilities {
 
     /**
      * Clips the specified line to the given rectangle.
-     * 
+     *
      * @param line the line (<code>null</code> not permitted).
      * @param rect the clipping rectangle (<code>null</code> not permitted).
-     * 
      * @return <code>true</code> if the clipped line is visible, and
      *         <code>false</code> otherwise.
      */
@@ -147,7 +87,7 @@ public final class LineUtilities {
 
         line.setLine(x1, y1, x2, y2);
         return true; // the line is visible - if it wasn't, we'd have
-                     // returned false from within the while loop above
+        // returned false from within the while loop above
 
     }
 }

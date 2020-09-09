@@ -1,28 +1,14 @@
-/*
- * Copyright 2013 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.commonworld;
 
-import java.util.EnumMap;
-
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Maps;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.ImmutableVector2i;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Maps;
+import java.util.EnumMap;
 
 /**
  * Defines orientation in a cartographic sense
@@ -109,6 +95,28 @@ public enum Orientation {
     }
 
     /**
+     * Finds the best-matching cardinal orientation.
+     *
+     * @param dir an arbitrary direction vector
+     * @return either EAST, WEST, NORTH or SOUTH
+     */
+    public static Orientation cardinalFromDirection(BaseVector2i dir) {
+        if (Math.abs(dir.x()) >= Math.abs(dir.y())) {
+            if (dir.x() > 0) {
+                return Orientation.EAST;
+            } else {
+                return Orientation.WEST;
+            }
+        } else {
+            if (dir.y() > 0) {
+                return Orientation.SOUTH;
+            } else {
+                return Orientation.NORTH;
+            }
+        }
+    }
+
+    /**
      * @return the opposite orientation
      */
     public Orientation getOpposite() {
@@ -166,27 +174,6 @@ public enum Orientation {
      */
     public ImmutableVector2i getDir() {
         return this.dir;
-    }
-
-    /**
-     * Finds the best-matching cardinal orientation.
-     * @param dir an arbitrary direction vector
-     * @return either EAST, WEST, NORTH or SOUTH
-     */
-    public static Orientation cardinalFromDirection(BaseVector2i dir) {
-        if (Math.abs(dir.x()) >= Math.abs(dir.y())) {
-            if (dir.x() > 0) {
-                return Orientation.EAST;
-            } else {
-                return Orientation.WEST;
-            }
-        } else {
-            if (dir.y() > 0) {
-                return Orientation.SOUTH;
-            } else {
-                return Orientation.NORTH;
-            }
-        }
     }
 }
 

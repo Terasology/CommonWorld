@@ -1,35 +1,21 @@
-/*
- * Copyright 2013 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.commonworld.contour;
+
+import org.terasology.commonworld.array.Arrays2D;
+import org.terasology.commonworld.array.IntArray2D;
+import org.terasology.commonworld.heightmap.HeightMap;
 
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.terasology.commonworld.array.Arrays2D;
-import org.terasology.commonworld.array.IntArray2D;
-import org.terasology.commonworld.heightmap.HeightMap;
-
 /**
  * Heavily inspired by sample code from the book
  * <p>
- * "Digital Image Processing - An Algorithmic Introduction using Java"
- * by Wilhelm Burger and Mark J. Burge
+ * "Digital Image Processing - An Algorithmic Introduction using Java" by Wilhelm Burger and Mark J. Burge
  * </p>
  * <pre>
  * https://github.com/biometrics/imagingbook
@@ -38,22 +24,18 @@ import org.terasology.commonworld.heightmap.HeightMap;
 public class ContourTracer {
     private static final byte FOREGROUND = 1;
     private static final byte BACKGROUND = 0;
-
-    private List<Contour> outerContours;
-    private List<Contour> innerContours;
-
-
-    // label values in labelArray can be:
-    // 0 ... unlabeled
-    // -1 ... previously visited background pixel
-    // >0 ... valid label
-    private IntArray2D labelArray;
-
     private final HeightMap dataMap;
     private final int width;
     private final int height;
     private final int offY;
     private final int offX;
+    private List<Contour> outerContours;
+    private List<Contour> innerContours;
+    // label values in labelArray can be:
+    // 0 ... unlabeled
+    // -1 ... previously visited background pixel
+    // >0 ... valid label
+    private IntArray2D labelArray;
 
     /**
      * @param orgHm the original height map to use
@@ -181,8 +163,8 @@ public class ContourTracer {
     private int findNextPoint(Point pt, int startDir) {
 
         final int[][] delta = {
-            {+1, 0}, {+1, +1}, {0, +1}, {-1, +1},
-            {-1, 0}, {-1, -1}, {0, -1}, {+1, -1}};
+                {+1, 0}, {+1, +1}, {0, +1}, {-1, +1},
+                {-1, 0}, {-1, -1}, {0, -1}, {+1, -1}};
 
         int dir = startDir;
 
@@ -226,7 +208,7 @@ public class ContourTracer {
                 } else {            // BACKGROUND pixel
                     if (label != 0) {
                         if (labelArray.get(u, v) == 0) { // unlabeled - new inner
-                                                     // contour
+                            // contour
                             Contour ic = traceInnerContour(u - 1, v, label);
                             innerContours.add(ic);
                         }

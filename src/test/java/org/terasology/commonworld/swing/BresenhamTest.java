@@ -1,21 +1,15 @@
-/*
- * Copyright 2014 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.commonworld.swing;
 
+import org.terasology.commonworld.geom.BresenhamCircleIterator;
+import org.terasology.commonworld.geom.BresenhamLineIterator;
+import org.terasology.commonworld.geom.BresenhamLineIterator.ThicknessMode;
+import org.terasology.math.TeraMath;
+
+import javax.swing.JComponent;
+import javax.swing.JFrame;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -24,14 +18,6 @@ import java.awt.Point;
 import java.awt.geom.Line2D;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-
-import org.terasology.commonworld.geom.BresenhamCircleIterator;
-import org.terasology.commonworld.geom.BresenhamLineIterator;
-import org.terasology.commonworld.geom.BresenhamLineIterator.ThicknessMode;
-import org.terasology.math.TeraMath;
 
 /**
  * Not really a JUnit test class, but rather a 'visual proof by example'.
@@ -88,7 +74,7 @@ public final class BresenhamTest {
 
                 PixelDrawer pixelDrawer2 = new PixelDrawer() {
                     @Override
-                     public void drawPixel(int x, int y, Color aColor) {
+                    public void drawPixel(int x, int y, Color aColor) {
                         int ax = st.x;
                         int ay = st.y;
                         int az = 10;
@@ -127,7 +113,8 @@ public final class BresenhamTest {
                 BresenhamLineIterator.iterateThickLine2DSimple(12, 52, 74, 28, drawerVisitor, 5, mode);
                 drawerVisitor.setColor(gray);
                 BresenhamLineIterator.iterateThickLine2D(50, 90, 80, 90, drawerVisitor, 5, ThicknessMode.CLOCKWISE);
-                BresenhamLineIterator.iterateThickLine2D(50, 100, 80, 100, drawerVisitor, 5, ThicknessMode.COUNTERCLOCKWISE);
+                BresenhamLineIterator.iterateThickLine2D(50, 100, 80, 100, drawerVisitor, 5,
+                        ThicknessMode.COUNTERCLOCKWISE);
                 BresenhamLineIterator.iterateThickLine2D(50, 110, 80, 110, drawerVisitor, 5, ThicknessMode.MIDDLE);
                 drawerVisitor.setColor(black);
                 BresenhamLineIterator.iterateThickLine2D(30, 90, 100, 90, drawerVisitor, 1, ThicknessMode.MIDDLE);
@@ -137,7 +124,8 @@ public final class BresenhamTest {
 
 
                 BresenhamPixelDrawerVisitor circleDrawerVisitor = new BresenhamPixelDrawerVisitor(pixelDrawer);
-                BresenhamPixelDrawerVisitor circleDrawerVisitor2 = new BresenhamPixelDrawerVisitor(pixelDrawer2, Color.GRAY);
+                BresenhamPixelDrawerVisitor circleDrawerVisitor2 = new BresenhamPixelDrawerVisitor(pixelDrawer2,
+                        Color.GRAY);
 
                 for (int r = 1; r < 8; r++) {
                     circleDrawerVisitor.setColor(Color.GRAY);
@@ -151,14 +139,17 @@ public final class BresenhamTest {
                 int drx = TeraMath.floorToInt(Math.sin(rot) * 15);
                 int dry = TeraMath.floorToInt(Math.cos(rot) * 15);
                 drawerVisitor.setColor(Color.MAGENTA);
-                BresenhamLineIterator.iterateThickLine2D(50 + drx, 70 + dry, 50 - drx, 70 - dry, drawerVisitor, 3, mode);
+                BresenhamLineIterator.iterateThickLine2D(50 + drx, 70 + dry, 50 - drx, 70 - dry, drawerVisitor, 3,
+                        mode);
                 rot += Math.toRadians(5);
 
                 BresenhamCircleIterator.iterateCircle(st.x, st.y, 8, circleDrawerVisitor2, true);
                 BresenhamCircleIterator.iterateCircle(end.x, end.y, 8, circleDrawerVisitor2, true);
 
-                BresenhamPixelDrawerVisitor drawerVisitor2 = new BresenhamPixelDrawerVisitor(pixelDrawer2, new Color(0x404000));
-                BresenhamLineIterator.iterateThickLine2D(st.x, st.y, end.x, end.y, drawerVisitor2, 17, mode);             }
+                BresenhamPixelDrawerVisitor drawerVisitor2 = new BresenhamPixelDrawerVisitor(pixelDrawer2,
+                        new Color(0x404000));
+                BresenhamLineIterator.iterateThickLine2D(st.x, st.y, end.x, end.y, drawerVisitor2, 17, mode);
+            }
         });
 
         Timer t = new Timer();

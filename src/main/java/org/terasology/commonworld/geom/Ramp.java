@@ -1,18 +1,5 @@
-/*
- * Copyright 2015 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.commonworld.geom;
 
@@ -21,9 +8,8 @@ import org.terasology.math.geom.BaseVector3f;
 import org.terasology.math.geom.BaseVector3i;
 
 /**
- * A plane that is defined by two points.
- * The missing third point is derived by a horizontal (dy = 0) line.
- * The result is a ramp.
+ * A plane that is defined by two points. The missing third point is derived by a horizontal (dy = 0) line. The result
+ * is a ramp.
  * <pre>
  *  ( ex )   ( ax )     ( dx )     ( -dy )
  *  ( ey ) = ( ay ) + L ( dy ) + K (  0  )
@@ -99,6 +85,7 @@ public class Ramp {
 
     /**
      * Finds the lambda value <b>along</b> the line. p0 has a lambda of 0, p1 has a lambda of 1
+     *
      * @param ex point x
      * @param ez point z
      * @return the lambda value
@@ -109,6 +96,7 @@ public class Ramp {
 
     /**
      * Finds the norm. lambda value <b>along</b> the line. p0 has a norm. lambda of 0, p1 has a lambda of dist(p0, p1).
+     *
      * @param ex point x
      * @param ez point z
      * @return the normalized lambda value
@@ -118,8 +106,9 @@ public class Ramp {
     }
 
     /**
-     * The y value at that point. For points outside the area, the value can be higher than
-     * the given y values of p0 and p1.
+     * The y value at that point. For points outside the area, the value can be higher than the given y values of p0 and
+     * p1.
+     *
      * @param ex point x
      * @param ez point z
      * @return the z value at that point (depends on lambda only)
@@ -130,6 +119,7 @@ public class Ramp {
 
     /**
      * The y value at that point, clamped to given min/max y values of p0 and p1.
+     *
      * @param ex point x
      * @param ez point z
      * @return the y value at that point (depends on lambda only)
@@ -140,6 +130,7 @@ public class Ramp {
 
     /**
      * Finds the signed distance from the line p0, p1 relative to that distance
+     *
      * @param ex point x
      * @param ez point z
      * @return the kappa value
@@ -150,6 +141,7 @@ public class Ramp {
 
     /**
      * Finds the signed distance from the line p0, p1 in absolute units
+     *
      * @param ex point x
      * @param ez point z
      * @return the norm. kappa value

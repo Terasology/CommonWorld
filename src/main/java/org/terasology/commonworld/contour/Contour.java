@@ -1,20 +1,9 @@
-/*
- * Copyright 2013 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.commonworld.contour;
+
+import com.google.common.collect.Lists;
 
 import java.awt.Point;
 import java.awt.Polygon;
@@ -23,30 +12,18 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import com.google.common.collect.Lists;
-
 /**
  * Stores information on a contour
  */
 public class Contour {
 
     /**
-     * It would be nice a have a list implementation where contains() runs in O(1).
-     * Unfortunately, LinkedHashSet removes duplicate entries.
+     * It would be nice a have a list implementation where contains() runs in O(1). Unfortunately, LinkedHashSet removes
+     * duplicate entries.
      */
     private final List<Point> points = new ArrayList<Point>();
     private Collection<Point> simplifiedPoints;
     private Polygon polygon;
-
-    /**
-     * @param n the point to add
-     */
-    public void addPoint(Point n) {
-        points.add(new Point(n));
-
-        simplifiedPoints = null;
-        polygon = null;
-    }
 
     /**
      * @param pts the point collection to use
@@ -66,9 +43,9 @@ public class Contour {
         return new Polygon(xPoints, yPoints, m);
     }
 
-
     /**
      * Removes all points that lie on straight lines
+     *
      * @param pts the list of points
      * @return a <b>new collection</b> containing the points
      */
@@ -101,6 +78,16 @@ public class Contour {
         }
 
         return result;
+    }
+
+    /**
+     * @param n the point to add
+     */
+    public void addPoint(Point n) {
+        points.add(new Point(n));
+
+        simplifiedPoints = null;
+        polygon = null;
     }
 
     /**
@@ -146,6 +133,7 @@ public class Contour {
      * space immediately adjacent to the point in the
      * increasing <code>Y</code> direction is inside the boundary.
      * </ul>
+     *
      * @param x the x coord
      * @param y the y coord
      * @return true if inside

@@ -1,18 +1,5 @@
-/*
- * Copyright 2015 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 package org.terasology.commonworld.geom;
 
 import java.util.EnumSet;
@@ -22,41 +9,6 @@ public final class BresenhamLineIterator {
 
     private BresenhamLineIterator() {
         // no instances
-    }
-
-    /**
-     * Overlap mode
-     */
-    public static enum Overlap {
-        /**
-         * Overlap - first go major then minor direction
-         */
-        MAJOR,
-
-        /**
-         * Overlap - first go minor then major direction
-         */
-        MINOR
-    }
-
-    /**
-     * Thickness mode
-     */
-    public static enum ThicknessMode {
-        /**
-         * Line goes through the center
-         */
-        MIDDLE,
-
-        /**
-         * Line goes along the border (clockwise)
-         */
-        CLOCKWISE,
-
-        /**
-         * Line goes along the border (counter-clockwise)
-         */
-        COUNTERCLOCKWISE
     }
 
     /**
@@ -72,8 +24,8 @@ public final class BresenhamLineIterator {
     }
 
     /**
-     * Modified Bresenham line drawing algorithm with optional overlap (esp. for iterateThickLine2D())
-     * Overlap draws additional pixel when changing minor direction - for standard bresenham overlap = LINE_OVERLAP_NONE (0)
+     * Modified Bresenham line drawing algorithm with optional overlap (esp. for iterateThickLine2D()) Overlap draws
+     * additional pixel when changing minor direction - for standard bresenham overlap = LINE_OVERLAP_NONE (0)
      * <pre>
      *  Sample line:
      *    00+
@@ -91,7 +43,8 @@ public final class BresenhamLineIterator {
      * @param aYEnd y-coordinate of the end position
      * @param overlap the overlap specification
      */
-    public static void iterateLine2D(int aXStart, int aYStart, int aXEnd, int aYEnd, BresenhamVisitor visitor, Set<Overlap> overlap) {
+    public static void iterateLine2D(int aXStart, int aYStart, int aXEnd, int aYEnd, BresenhamVisitor visitor,
+                                     Set<Overlap> overlap) {
         int tDeltaX;
         int tDeltaY;
         int tDeltaXTimes2;
@@ -179,6 +132,7 @@ public final class BresenhamLineIterator {
 
     /**
      * Bresenham with thickness - no pixel missed and every pixel only visited once!
+     *
      * @param x0 x0 x-coordinate of starting position
      * @param y0 y0 y-coordinate of starting position
      * @param x1 x1 x-coordinate of ending position
@@ -186,7 +140,8 @@ public final class BresenhamLineIterator {
      * @param thickness the thickness
      * @param mode the thickness mode
      */
-    public static void iterateThickLine2D(int x0, int y0, int x1, int y1, BresenhamVisitor visitor, int thickness, ThicknessMode mode) {
+    public static void iterateThickLine2D(int x0, int y0, int x1, int y1, BresenhamVisitor visitor, int thickness,
+                                          ThicknessMode mode) {
 
         if (thickness <= 1) {
             iterateLine2D(x0, y0, x1, y1, visitor, EnumSet.noneOf(Overlap.class));
@@ -305,7 +260,7 @@ public final class BresenhamLineIterator {
                      *   3333-222211
                      * 33-22221111
                      *  221111                     /\
-                         *  11                          Main direction of draw vector
+                     *  11                          Main direction of draw vector
                      *  -> Line main direction
                      *  <- Minor direction of counterclockwise draw vector
                      */
@@ -354,8 +309,9 @@ public final class BresenhamLineIterator {
     }
 
     /**
-     * Bresenham with thickness, but no clipping, some pixel are drawn twice (use LINE_OVERLAP_BOTH)
-     * and direction of thickness changes for each octant (except for LINE_THICKNESS_MIDDLE and aThickness odd)
+     * Bresenham with thickness, but no clipping, some pixel are drawn twice (use LINE_OVERLAP_BOTH) and direction of
+     * thickness changes for each octant (except for LINE_THICKNESS_MIDDLE and aThickness odd)
+     *
      * @param x0 x0
      * @param y0 y0
      * @param x1 x1
@@ -364,7 +320,8 @@ public final class BresenhamLineIterator {
      * @param thickness the thickness
      * @param mode the mode
      */
-    public static void iterateThickLine2DSimple(int x0, int y0, int x1, int y1, BresenhamVisitor visitor, int thickness, ThicknessMode mode) {
+    public static void iterateThickLine2DSimple(int x0, int y0, int x1, int y1, BresenhamVisitor visitor,
+                                                int thickness, ThicknessMode mode) {
 
         int tDeltaX;
         int tDeltaY;
@@ -466,5 +423,40 @@ public final class BresenhamLineIterator {
                 iterateLine2D(aXStart, aYStart, aXEnd, aYEnd, visitor, tOverlap);
             }
         }
+    }
+
+    /**
+     * Overlap mode
+     */
+    public enum Overlap {
+        /**
+         * Overlap - first go major then minor direction
+         */
+        MAJOR,
+
+        /**
+         * Overlap - first go minor then major direction
+         */
+        MINOR
+    }
+
+    /**
+     * Thickness mode
+     */
+    public enum ThicknessMode {
+        /**
+         * Line goes through the center
+         */
+        MIDDLE,
+
+        /**
+         * Line goes along the border (clockwise)
+         */
+        CLOCKWISE,
+
+        /**
+         * Line goes along the border (counter-clockwise)
+         */
+        COUNTERCLOCKWISE
     }
 }
