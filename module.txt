@@ -1,10 +1,10 @@
 {
-    "id": "CommonWorld",
-    "version": "1.0.0",
-    "author": "msteiger",
-    "displayName": "Common World",
-    "description": "Provides common classes for different world generators",
-    "dependencies": [],
-    "isServerSideOnly": false,
-    "isLibrary": true
+  "id": "CommonWorld",
+  "version": "1.1.0-SNAPSHOT",
+  "author": "msteiger",
+  "displayName": "Common World",
+  "description": "Provides common classes for different world generators",
+  "dependencies": [],
+  "isServerSideOnly": false,
+  "isLibrary": true
 }
