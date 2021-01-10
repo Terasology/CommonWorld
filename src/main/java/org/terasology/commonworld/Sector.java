@@ -16,6 +16,7 @@
 
 package org.terasology.commonworld;
 
+import org.joml.Vector2ic;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.ImmutableVector2i;
 import org.terasology.math.geom.Vector2i;
@@ -64,9 +65,9 @@ public final class Sector {
      */
     public Sector getNeighbor(Orientation dir) {
 
-        ImmutableVector2i v = dir.getDir();
-        int x = coords.getX() + v.getX();
-        int z = coords.getY() + v.getY();
+        Vector2ic v = dir.direction();
+        int x = coords.getX() + v.x();
+        int z = coords.getY() + v.y();
 
         return Sectors.getSector(new Vector2i(x, z));
     }
