@@ -18,6 +18,8 @@ package org.terasology.commonworld;
 
 import java.util.EnumMap;
 
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.ImmutableVector2i;
 
@@ -102,10 +104,10 @@ public enum Orientation {
         ROTATE_CCW.put(NORTHEAST, NORTH);
     }
 
-    private final ImmutableVector2i dir;
+    private final Vector2ic dir;
 
     Orientation(int dx, int dz) {
-        this.dir = new ImmutableVector2i(dx, dz);
+        this.dir = new Vector2i(dx, dz);
     }
 
     /**
@@ -164,8 +166,16 @@ public enum Orientation {
     /**
      * @return the orientation
      */
+    public Vector2ic direction() {
+        return dir;
+    }
+
+    /**
+     * @return the orientation
+     */
+    @Deprecated
     public ImmutableVector2i getDir() {
-        return this.dir;
+        return new ImmutableVector2i(this.dir.x(), this.dir.y());
     }
 
     /**
