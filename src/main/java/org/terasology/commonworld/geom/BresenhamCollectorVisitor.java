@@ -17,17 +17,19 @@ package org.terasology.commonworld.geom;
 
 import java.util.Collection;
 import java.util.HashSet;
-import org.terasology.math.geom.Vector2i;
+
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 
 public class BresenhamCollectorVisitor implements BresenhamVisitor {
 
-    private Collection<Vector2i> line;
+    private Collection<Vector2ic> line;
 
     public BresenhamCollectorVisitor() {
         line = new HashSet<>();
     }
 
-    public Collection<Vector2i> getLinePoints() {
+    public Collection<Vector2ic> getLinePoints() {
         return line;
     }
 
