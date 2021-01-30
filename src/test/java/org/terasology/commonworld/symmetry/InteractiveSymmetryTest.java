@@ -16,6 +16,8 @@
 
 package org.terasology.commonworld.symmetry;
 
+import org.joml.Vector2i;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -27,7 +29,6 @@ import java.awt.geom.Line2D;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import org.terasology.math.geom.Vector2i;
 
 /**
  * A interactive test for different {@link Symmetry} implementations.
@@ -64,8 +65,8 @@ public final class InteractiveSymmetryTest {
 
                 Vector2i mp = new Vector2i(pt.x / scale, pt.y / scale);
 
-                double mouseX = mp.getX() + 0.5;
-                double mouseY = mp.getY() + 0.5;
+                double mouseX = mp.x() + 0.5;
+                double mouseY = mp.y() + 0.5;
 
                 g.setColor(Color.CYAN);
                 g.draw(new Line2D.Double(mouseX, mouseY, mouseX, mouseY));
@@ -75,8 +76,8 @@ public final class InteractiveSymmetryTest {
 
                 mp = sym.getMirrored(mp);
 
-                mouseX = centerX + mp.getX() + 0.5;
-                mouseY = centerY + mp.getY() + 0.5;
+                mouseX = centerX + mp.x() + 0.5;
+                mouseY = centerY + mp.y() + 0.5;
 
                 g.setColor(Color.BLUE);
                 g.draw(new Line2D.Double(mouseX, mouseY, mouseX, mouseY));

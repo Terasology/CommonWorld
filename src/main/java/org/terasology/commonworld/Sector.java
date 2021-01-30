@@ -16,11 +16,10 @@
 
 package org.terasology.commonworld;
 
+import org.joml.Vector2i;
 import org.joml.Vector2ic;
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.ImmutableVector2i;
-import org.terasology.math.geom.Vector2i;
-import org.terasology.math.geom.Rect2i;
+import org.terasology.world.block.BlockArea;
+import org.terasology.world.block.BlockAreac;
 
 /**
  * Defines a square-shaped terrain sector
@@ -35,27 +34,28 @@ public final class Sector {
     public static final int SIZE_X = 1024;
     public static final int SIZE_Z = 1024;
 
-    private final ImmutableVector2i coords;
+    private final Vector2i coords = new Vector2i();
 
-    private final Rect2i bounds;
+    private final BlockArea bounds = new BlockArea(BlockArea.INVALID);
 
 
     /**
      * @param coords the coordinates
      */
-    Sector(BaseVector2i coords) {
+    Sector(Vector2ic coords) {
         if (coords == null) {
             throw new NullPointerException("coords cannot be null");
         }
 
-        this.coords = ImmutableVector2i.createOrUse(coords);
-        this.bounds = Rect2i.createFromMinAndSize(coords.getX() * SIZE_X, coords.getY() * SIZE_Z, SIZE_X, SIZE_Z);
+        this.coords.set(coords);
+        this.bounds.set(0,0,0,0);
+        this.bounds.setPosition(coords.x() * SIZE_X, coords.y() * SIZE_Z).setSize(SIZE_X, SIZE_Z);
     }
 
     /**
      * @return the coordinates
      */
-    public ImmutableVector2i getCoords() {
+    public Vector2ic getCoords() {
         return coords;
     }
 
@@ -66,15 +66,15 @@ public final class Sector {
     public Sector getNeighbor(Orientation dir) {
 
         Vector2ic v = dir.direction();
-        int x = coords.getX() + v.x();
-        int z = coords.getY() + v.y();
+        int x = coords.x() + v.x();
+        int z = coords.y() + v.y();
 
         return Sectors.getSector(new Vector2i(x, z));
     }
 
     @Override
     public String toString() {
-        return "Sector [" + coords.getX() + ", " + coords.getY() + "]";
+        return "Sector [" + coords.x() + ", " + coords.y() + "]";
     }
 
     @Override
@@ -105,7 +105,7 @@ public final class Sector {
     /**
      * @return the bounds in (block) world coordinates
      */
-    public Rect2i getWorldBounds() {
+    public BlockAreac getWorldBounds() {
         return bounds;
     }
 

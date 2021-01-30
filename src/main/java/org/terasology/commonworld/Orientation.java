@@ -183,7 +183,7 @@ public enum Orientation {
      * @param dir an arbitrary direction vector
      * @return either EAST, WEST, NORTH or SOUTH
      */
-    public static Orientation cardinalFromDirection(BaseVector2i dir) {
+    public static Orientation cardinalFromDirection(Vector2ic dir) {
         if (Math.abs(dir.x()) >= Math.abs(dir.y())) {
             if (dir.x() > 0) {
                 return Orientation.EAST;

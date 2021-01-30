@@ -16,9 +16,8 @@
 
 package org.terasology.commonworld.symmetry;
 
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.Vector2i;
-
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 
 /**
  * An abstract partial implementation of {@link Symmetry}
@@ -26,13 +25,13 @@ import org.terasology.math.geom.Vector2i;
 public abstract class AbstractSymmetry implements Symmetry {
 
     @Override
-    public boolean isMirrored(BaseVector2i v) {
-        return isMirrored(v.getX(), v.getY());
+    public boolean isMirrored(Vector2ic v) {
+        return isMirrored(v.x(), v.y());
     }
 
     @Override
-    public Vector2i getMirrored(BaseVector2i v) {
-        return getMirrored(v.getX(), v.getY());
+    public Vector2i getMirrored(Vector2ic v) {
+        return getMirrored(v.x(), v.y());
     }
 
 }

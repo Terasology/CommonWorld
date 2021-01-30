@@ -1,7 +1,7 @@
 // Copyright 2021 The Terasology Foundation
 // SPDX-License-Identifier: Apache-2.0
 
-package org.terasology.dynamicCities.rasterizer;
+package org.terasology.commonworld.geom;
 
 import org.joml.Vector2i;
 import org.joml.Vector2ic;

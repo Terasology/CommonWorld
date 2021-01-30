@@ -19,19 +19,20 @@ package org.terasology.commonworld;
 import java.math.RoundingMode;
 import java.util.Map;
 
-import org.terasology.math.geom.Vector2i;
-import org.terasology.math.TeraMath;
-import org.terasology.math.geom.Vector3f;
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 
 import com.google.common.collect.Maps;
 import com.google.common.math.IntMath;
+import org.joml.Vector3f;
+import org.terasology.math.TeraMath;
 
 /**
  * Gives access to all Sectors
  */
 public final class Sectors {
 
-    private static final Map<Vector2i, Sector> SECTORS = Maps.newConcurrentMap();
+    private static final Map<Vector2ic, Sector> SECTORS = Maps.newConcurrentMap();
 
     private Sectors() {
         // private
@@ -50,13 +51,13 @@ public final class Sectors {
      * @param coord the coordinate of the sector
      * @return the sector
      */
-    public static Sector getSector(Vector2i coord) {
+    public static Sector getSector(Vector2ic coord) {
         Sector sector = SECTORS.get(coord);
 
         if (sector == null) {
             sector = new Sector(coord);
 
-            SECTORS.put(coord, sector);
+            SECTORS.put(new Vector2i(coord), sector);
         }
 
         return sector;
@@ -67,7 +68,7 @@ public final class Sectors {
      * @return the sector
      */
     public static Sector getSectorForPosition(Vector3f pos) {
-        return getSectorForBlock(TeraMath.floorToInt(pos.getX()), TeraMath.floorToInt(pos.getZ()));
+        return getSectorForBlock(TeraMath.floorToInt(pos.x()), TeraMath.floorToInt(pos.z()));
     }
 
     /**
