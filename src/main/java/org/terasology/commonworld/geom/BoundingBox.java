@@ -16,12 +16,12 @@
 
 package org.terasology.commonworld.geom;
 
-import com.google.common.base.Optional;
 import org.joml.Vector2ic;
 import org.terasology.world.block.BlockArea;
 
 import java.awt.Rectangle;
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * Defines a axis-aligned bounding box based on a set of Vector2is
@@ -72,7 +72,7 @@ public class BoundingBox {
      */
     public static Optional<Rectangle> getBoundingRect(Collection<? extends Vector2ic> pts) {
         if (pts.isEmpty()) {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         BoundingBox bbox = new BoundingBox(pts);
