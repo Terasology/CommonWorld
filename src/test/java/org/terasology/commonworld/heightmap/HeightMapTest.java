@@ -21,8 +21,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Random;
 
-import org.terasology.math.geom.Vector2i;
-
+import org.joml.Vector2i;
 import org.junit.Test;
 import org.terasology.commonworld.symmetry.Symmetries;
 import org.terasology.commonworld.symmetry.Symmetry;

@@ -16,8 +16,9 @@
 
 package org.terasology.commonworld.symmetry;
 
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.Vector2i;
+
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 
 /**
  * Defines a symmetry
@@ -28,7 +29,7 @@ public interface Symmetry {
      * @param v the position coordinate
      * @return true if the location is on the "mirrored" part of the height map
      */
-    boolean isMirrored(BaseVector2i v);
+    boolean isMirrored(Vector2ic v);
 
     /**
      * @param x the x coordinate
@@ -41,7 +42,7 @@ public interface Symmetry {
      * @param sc the position coordinates
      * @return the mirrored position
      */
-    Vector2i getMirrored(BaseVector2i sc);
+    Vector2i getMirrored(Vector2ic sc);
 
     /**
      * @param x the x position coordinate

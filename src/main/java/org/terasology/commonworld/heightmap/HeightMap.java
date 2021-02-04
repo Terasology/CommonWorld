@@ -18,16 +18,17 @@ package org.terasology.commonworld.heightmap;
 
 import java.util.function.Function;
 
+import org.joml.Vector2ic;
 import org.terasology.math.geom.BaseVector2i;
 
 /**
  * Definition of a height map
  */
-public interface HeightMap extends Function<BaseVector2i, Integer> {
+public interface HeightMap extends Function<Vector2ic, Integer> {
 
     @Override
-    default Integer apply(BaseVector2i input) {
-        return Integer.valueOf(apply(input.getX(), input.getY()));
+    default Integer apply(Vector2ic input) {
+        return Integer.valueOf(apply(input.x(), input.y()));
     }
 
     /**

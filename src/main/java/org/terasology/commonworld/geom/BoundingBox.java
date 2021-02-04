@@ -16,17 +16,18 @@
 
 package org.terasology.commonworld.geom;
 
+import org.joml.Vector2ic;
+import org.terasology.world.block.BlockArea;
+
 import java.awt.Rectangle;
 import java.util.Collection;
-
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.Rect2i;
-
-import com.google.common.base.Optional;
+import java.util.Optional;
 
 /**
  * Defines a axis-aligned bounding box based on a set of Vector2is
+ * use {@link org.terasology.world.block.BlockRegion}
  */
+@Deprecated
 public class BoundingBox {
     private int x1;
     private int y1;
@@ -48,11 +49,11 @@ public class BoundingBox {
     /**
      * @param pt the initial Vector2i
      */
-    public BoundingBox(BaseVector2i pt) {
-        x1 = pt.getX();
-        y1 = pt.getY();
-        x2 = pt.getX();
-        y2 = pt.getY();
+    public BoundingBox(Vector2ic pt) {
+        x1 = pt.x();
+        y1 = pt.y();
+        x2 = pt.x();
+        y2 = pt.y();
 
         empty = false;
     }
@@ -60,7 +61,7 @@ public class BoundingBox {
     /**
      * @param pts the initial Vector2is
      */
-    public BoundingBox(Collection<? extends BaseVector2i> pts) {
+    public BoundingBox(Collection<? extends Vector2ic> pts) {
         this();
         addAll(pts);
     }
@@ -69,9 +70,9 @@ public class BoundingBox {
      * @param pts a collection of Vector2is
      * @return the bounding rectangle of pts or absent() if pts is empty
      */
-    public static Optional<Rectangle> getBoundingRect(Collection<? extends BaseVector2i> pts) {
+    public static Optional<Rectangle> getBoundingRect(Collection<? extends Vector2ic> pts) {
         if (pts.isEmpty()) {
-            return Optional.absent();
+            return Optional.empty();
         }
 
         BoundingBox bbox = new BoundingBox(pts);
@@ -82,17 +83,17 @@ public class BoundingBox {
      * Resizes to include pt
      * @param pt the Vector2i
      */
-    public void add(BaseVector2i pt) {
-        add(pt.getX(), pt.getY());
+    public void add(Vector2ic pt) {
+        add(pt.x(), pt.y());
     }
 
     /**
      * Resizes to include all Vector2is
      * @param pts a collection of Vector2is
      */
-    public void addAll(Collection<? extends BaseVector2i> pts) {
-        for (BaseVector2i pt : pts) {
-            add(pt.getX(), pt.getY());
+    public void addAll(Collection<? extends Vector2ic> pts) {
+        for (Vector2ic pt : pts) {
+            add(pt.x(), pt.y());
         }
     }
 
@@ -131,12 +132,12 @@ public class BoundingBox {
     /**
      * @return a new Rect2i instance containing the bounds
      */
-    public Rect2i toRect2i() {
+    public BlockArea toRect2i() {
         if (empty) {
             throw new IllegalStateException("BoundingBox undefined - no Points were added");
         }
 
-        return Rect2i.createFromMinAndMax(x1, y1, x2, y2);
+        return new BlockArea(x1, y1, x2, y2);
     }
 
     /**
