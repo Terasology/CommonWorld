@@ -1,24 +1,11 @@
-/*
- * Copyright 2013 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2021 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.commonworld.heightmap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.terasology.math.geom.Rect2i;
+import org.terasology.joml.geom.Rectanglei;
 
 /**
  * A cache that stores a rectangular area
@@ -28,35 +15,35 @@ class CachingHeightMap implements HeightMap {
     private static final Logger logger = LoggerFactory.getLogger(CachingHeightMap.class);
 
     private final short[] height;
-    private final Rect2i area;
+    private final Rectanglei area;
     private final HeightMap hm;
 
     /**
      * @param area the area to cache
      * @param hm the height map to use
      */
-    public CachingHeightMap(Rect2i area, HeightMap hm) {
+    public CachingHeightMap(Rectanglei area, HeightMap hm) {
         this.area = area;
         this.hm = hm;
-        this.height = new short[area.width() * area.height()];
+        this.height = new short[area.getSizeX() * area.getSizeY()];
 
-        for (int z = 0; z < area.height(); z++) {
-            for (int x = 0; x < area.width(); x++) {
+        for (int z = 0; z < area.getSizeY(); z++) {
+            for (int x = 0; x < area.getSizeX(); x++) {
                 int y = hm.apply(x + area.minX(), z + area.minY());
-                height[z * area.width() + x] = (short) y;
+                height[z * area.getSizeX() + x] = (short) y;
             }
         }
     }
 
     @Override
     public int apply(int x, int z) {
-        boolean xOk = x >= area.minX() && x < area.minX() + area.width();
-        boolean zOk = z >= area.minY() && z < area.minY() + area.height();
+        boolean xOk = x >= area.minX() && x < area.minX() + area.getSizeX();
+        boolean zOk = z >= area.minY() && z < area.minY() + area.getSizeY();
 
         if (xOk && zOk) {
             int lx = x - area.minX();
             int lz = z - area.minY();
-            return height[lz * area.width() + lx];
+            return height[lz * area.getSizeX() + lx];
         }
 
         logger.debug("Accessing height map outside cached bounds -- referring to uncached height map");

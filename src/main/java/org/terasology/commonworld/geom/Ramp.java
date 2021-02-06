@@ -1,24 +1,11 @@
-/*
- * Copyright 2015 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2021 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.commonworld.geom;
 
+import org.joml.Vector3fc;
+import org.joml.Vector3ic;
 import org.terasology.math.TeraMath;
-import org.terasology.math.geom.BaseVector3f;
-import org.terasology.math.geom.BaseVector3i;
 
 /**
  * A plane that is defined by two points.
@@ -58,26 +45,26 @@ public class Ramp {
      * @param p0 the first point
      * @param p1 the second point
      */
-    public Ramp(BaseVector3f p0, BaseVector3f p1) {
-        ax = p0.getX();
-        ay = p0.getY();
-        az = p0.getZ();
-        dx = p1.getX() - p0.getX();
-        dy = p1.getY() - p0.getY();
-        dz = p1.getZ() - p0.getZ();
+    public Ramp(Vector3fc p0, Vector3fc p1) {
+        ax = p0.x();
+        ay = p0.y();
+        az = p0.z();
+        dx = p1.x() - p0.x();
+        dy = p1.y() - p0.y();
+        dz = p1.z() - p0.z();
     }
 
     /**
      * @param p0 the first point
      * @param p1 the second point
      */
-    public Ramp(BaseVector3i p0, BaseVector3i p1) {
-        ax = p0.getX();
-        ay = p0.getY();
-        az = p0.getZ();
-        dx = p1.getX() - p0.getX();
-        dy = p1.getY() - p0.getY();
-        dz = p1.getZ() - p0.getZ();
+    public Ramp(Vector3ic p0, Vector3ic p1) {
+        ax = p0.x();
+        ay = p0.y();
+        az = p0.z();
+        dx = p1.x() - p0.x();
+        dy = p1.y() - p0.y();
+        dz = p1.z() - p0.z();
     }
 
     /**

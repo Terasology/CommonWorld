@@ -1,25 +1,12 @@
-/*
- * Copyright 2013 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2021 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.commonworld.heightmap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.terasology.joml.geom.Rectanglei;
 import org.terasology.math.TeraMath;
-import org.terasology.math.geom.Rect2i;
 
 /**
  * A cache that stores a rectangular area and interpolates values bi-linearly
@@ -29,7 +16,7 @@ class CachingLerpHeightMap implements HeightMap {
     private static final Logger logger = LoggerFactory.getLogger(CachingLerpHeightMap.class);
 
     private final short[] height;
-    private final Rect2i area;
+    private final Rectanglei area;
     private final HeightMap hm;
     private final int scale;
     private int scaledWidth;
@@ -40,21 +27,21 @@ class CachingLerpHeightMap implements HeightMap {
      * @param hm the height map to use
      * @param scale the scale level
      */
-    public CachingLerpHeightMap(Rect2i area, HeightMap hm, int scale) {
+    public CachingLerpHeightMap(Rectanglei area, HeightMap hm, int scale) {
         this.area = area;
         this.scale = scale;
         this.hm = hm;
 
-        this.scaledWidth = area.width() / scale + 1;
-        this.scaledHeight = area.height() / scale + 1;
+        this.scaledWidth = area.getSizeX() / scale + 1;
+        this.scaledHeight = area.getSizeY() / scale + 1;
 
         // if scale is not a divisor of the width -> round up
-        if (area.width() % scale > 0) {
+        if (area.getSizeX() % scale > 0) {
             scaledWidth++;
         }
 
         // if scale is not a divisor of the height -> round up
-        if (area.height() % scale > 0) {
+        if (area.getSizeY() % scale > 0) {
             scaledHeight++;
         }
 
