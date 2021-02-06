@@ -6,9 +6,28 @@ package org.terasology.commonworld.geom;
 import org.joml.Vector2f;
 import org.joml.Vector2fc;
 import org.terasology.joml.geom.Rectanglef;
-import org.terasology.math.geom.BaseRect;
 
 public class Line2f {
+    /**
+     * The bitmask that indicates that a point lies to the left.
+     */
+    public static final int OUT_LEFT = 1;
+
+    /**
+     * The bitmask that indicates that a point lies above.
+     */
+    public static final int OUT_TOP = 2;
+
+    /**
+     * The bitmask that indicates that a point lies to the right.
+     */
+    public static final int OUT_RIGHT = 4;
+
+    /**
+     * The bitmask that indicates that a point lies below.
+     */
+    public static final int OUT_BOTTOM = 8;
+
     private final Vector2f start = new Vector2f();
     private final Vector2f end = new Vector2f();
 
@@ -87,9 +106,12 @@ public class Line2f {
     }
     /**
      * Computes the smallest distance to a given point in 2D space
-     * @param pointA the start of the line segment
-     * @param pointB the end of the line segment
-     * @param pointP the point to test
+     * @param pointAx the x coordinate of the start of the line segment
+     * @param pointAy the y coordinate of the start of the line segment
+     * @param pointBx the x coordinate of the end of the line segment
+     * @param pointBy the y coordinate of the end of the line segment
+     * @param pointPx the x coordinate of the point to test
+     * @param pointPy the y coordinate of the point to test
      * @return the smallest distance
      */
     public static float distanceToPoint(float pointAx, float pointAy, float pointBx, float pointBy,
@@ -127,18 +149,18 @@ public class Line2f {
     private int outcode(Rectanglef rect, float x, float y) {
         int out = 0;
         if (rect.getSizeX() <= 0) {
-            out |= BaseRect.OUT_LEFT | BaseRect.OUT_RIGHT;
+            out |= OUT_LEFT | OUT_RIGHT;
         } else if (x < rect.minX) {
-            out |= BaseRect.OUT_LEFT;
+            out |= OUT_LEFT;
         } else if (x >= rect.minX + (rect.getSizeX())) {
-            out |= BaseRect.OUT_RIGHT;
+            out |= OUT_RIGHT;
         }
         if (rect.getSizeY() <= 0) {
-            out |= BaseRect.OUT_TOP | BaseRect.OUT_BOTTOM;
+            out |= OUT_TOP | OUT_BOTTOM;
         } else if (y < rect.minY) {
-            out |= BaseRect.OUT_TOP;
+            out |= OUT_TOP;
         } else if (y >= rect.minY + rect.getSizeY()) {
-            out |= BaseRect.OUT_BOTTOM;
+            out |= OUT_BOTTOM;
         }
         return out;
     }
@@ -176,32 +198,32 @@ public class Line2f {
             if (f1 != 0) {
                 // first point is outside, so we update it against one of the
                 // four sides then continue
-                if ((f1 & BaseRect.OUT_LEFT) == BaseRect.OUT_LEFT && dx != 0.0) {
+                if ((f1 & OUT_LEFT) == OUT_LEFT && dx != 0.0) {
                     y1 = y1 + (minX - x1) * dy / dx;
                     x1 = minX;
-                } else if ((f1 & BaseRect.OUT_RIGHT) == BaseRect.OUT_RIGHT && dx != 0.0) {
+                } else if ((f1 & OUT_RIGHT) == OUT_RIGHT && dx != 0.0) {
                     y1 = y1 + (maxX - x1) * dy / dx;
                     x1 = maxX;
-                } else if ((f1 & BaseRect.OUT_BOTTOM) == BaseRect.OUT_BOTTOM && dy != 0.0) {
+                } else if ((f1 & OUT_BOTTOM) == OUT_BOTTOM && dy != 0.0) {
                     x1 = x1 + (maxY - y1) * dx / dy;
                     y1 = maxY;
-                } else if ((f1 & BaseRect.OUT_TOP) == BaseRect.OUT_TOP && dy != 0.0) {
+                } else if ((f1 & OUT_TOP) == OUT_TOP && dy != 0.0) {
                     x1 = x1 + (minY - y1) * dx / dy;
                     y1 = minY;
                 }
                 f1 = outcode(rect, x1, y1);
             } else if (f2 != 0) {
                 // second point is outside, so we update it against one of the four sides then continue
-                if ((f2 & BaseRect.OUT_LEFT) == BaseRect.OUT_LEFT && dx != 0.0) {
+                if ((f2 & OUT_LEFT) == OUT_LEFT && dx != 0.0) {
                     y2 = y2 + (minX - x2) * dy / dx;
                     x2 = minX;
-                } else if ((f2 & BaseRect.OUT_RIGHT) == BaseRect.OUT_RIGHT && dx != 0.0) {
+                } else if ((f2 & OUT_RIGHT) == OUT_RIGHT && dx != 0.0) {
                     y2 = y2 + (maxX - x2) * dy / dx;
                     x2 = maxX;
-                } else if ((f2 & BaseRect.OUT_BOTTOM) == BaseRect.OUT_BOTTOM && dy != 0.0) {
+                } else if ((f2 & OUT_BOTTOM) == OUT_BOTTOM && dy != 0.0) {
                     x2 = x2 + (maxY - y2) * dx / dy;
                     y2 = maxY;
-                } else if ((f2 & BaseRect.OUT_TOP) == BaseRect.OUT_TOP && dy != 0.0) {
+                } else if ((f2 & OUT_TOP) == OUT_TOP && dy != 0.0) {
                     x2 = x2 + (minY - y2) * dx / dy;
                     y2 = minY;
                 }

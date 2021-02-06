@@ -1,26 +1,13 @@
-/*
- * Copyright 2013 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2021 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.commonworld.geom;
 
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
+
 import java.awt.geom.Path2D;
 import java.util.List;
-
-import org.terasology.math.geom.Vector2i;
-import org.terasology.math.geom.BaseVector2i;
 
 /**
  * Some spline-related utilities
@@ -35,14 +22,14 @@ public final class PathUtils {
      * @param points a list of points
      * @return a path of connected line segments
      */
-    public static Path2D createSegmentPath(List<? extends BaseVector2i> points) {
+    public static Path2D createSegmentPath(List<? extends Vector2ic> points) {
         Path2D path = new Path2D.Double();
 
-        path.moveTo(points.get(0).getX(), points.get(0).getY());
+        path.moveTo(points.get(0).x(), points.get(0).y());
 
         for (int i = 0; i < points.size() - 1; i++) {
-            BaseVector2i p1 = points.get(i + 1);
-            path.lineTo(p1.getX(), p1.getY());
+            Vector2ic p1 = points.get(i + 1);
+            path.lineTo(p1.x(), p1.y());
         }
 
         return path;
