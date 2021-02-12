@@ -3,9 +3,8 @@
 
 package org.terasology.commonworld;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.terasology.commonworld.Orientation.EAST;
 import static org.terasology.commonworld.Orientation.NORTH;
 import static org.terasology.commonworld.Orientation.NORTHEAST;
@@ -15,6 +14,8 @@ import static org.terasology.commonworld.Orientation.SOUTHEAST;
 import static org.terasology.commonworld.Orientation.SOUTHWEST;
 import static org.terasology.commonworld.Orientation.WEST;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * Tests {@link Orientation}
  */
@@ -32,9 +33,11 @@ public class OrientationTest {
         assertEquals(SOUTHEAST, NORTHWEST.getOpposite());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testInvalid() {
-        NORTH.getRotated(12);
+        assertThrows(IllegalArgumentException.class, () -> {
+            NORTH.getRotated(12);
+        });
     }
 
     @Test
