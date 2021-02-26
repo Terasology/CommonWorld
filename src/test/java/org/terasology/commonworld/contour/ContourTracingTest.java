@@ -33,16 +33,16 @@ public class ContourTracingTest {
     public void test() {
 
         List<String> data = Arrays.asList(
-            "             ",
-            "    XXXXXX   ",
-            "  XXXXXXXXXX ",
-            " XXX   XX    ",
-            "   XXXXXXX   ",
-            "  XXXXXXXX   ",
-            "    XXXX     ",
-            "   XXXX      ",
-            "   XXX       ",
-            "             ");
+                "             ",
+                "    XXXXXX   ",
+                "  XXXXXXXXXX ",
+                " XXX   XX    ",
+                "   XXXXXXX   ",
+                "  XXXXXXXX   ",
+                "    XXXX     ",
+                "   XXXX      ",
+                "   XXX       ",
+                "             ");
 
         int width = data.get(0).length();
         int height = data.size();
@@ -59,21 +59,21 @@ public class ContourTracingTest {
         drawContour(all, width, height);
 
         List<String> desired = Arrays.asList(
-            "-------------",
-            "----XXXXXX---",
-            "--XXOOO--XXX-",
-            "-XXO---OX----",
-            "---XOOO--X---",
-            "--XX----XX---",
-            "----X--X-----",
-            "---X--X------",
-            "---XXX-------",
-            "-------------");
+                "-------------",
+                "----XXXXXX---",
+                "--XXOOO--XXX-",
+                "-XXO---OX----",
+                "---XOOO--X---",
+                "--XX----XX---",
+                "----X--X-----",
+                "---X--X------",
+                "---XXX-------",
+                "-------------");
 
         List<String> reality = drawContour(all, width, height);
 
         for (int line = 0; line < height; line++) {
-            assertEquals("Line " + line, desired.get(line), reality.get(line));
+            assertEquals(desired.get(line), reality.get(line), "Line " + line);
         }
     }
 
