@@ -16,9 +16,9 @@
 
 package org.terasology.commonworld.heightmap;
 
-import org.terasology.utilities.procedural.BrownianNoise;
-import org.terasology.utilities.procedural.Noise;
-import org.terasology.utilities.procedural.SimplexNoise;
+import org.terasology.engine.utilities.procedural.BrownianNoise;
+import org.terasology.engine.utilities.procedural.Noise;
+import org.terasology.engine.utilities.procedural.SimplexNoise;
 
 /**
  * A simple implementation based on {@link SimplexNoise}

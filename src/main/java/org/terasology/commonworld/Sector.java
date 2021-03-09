@@ -18,8 +18,8 @@ package org.terasology.commonworld;
 
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
-import org.terasology.world.block.BlockArea;
-import org.terasology.world.block.BlockAreac;
+import org.terasology.engine.world.block.BlockArea;
+import org.terasology.engine.world.block.BlockAreac;
 
 /**
  * Defines a square-shaped terrain sector
