@@ -69,7 +69,7 @@ public final class Sector {
         int x = coords.x() + v.x();
         int z = coords.y() + v.y();
 
-        return Sectors.getSector(new Vector2i(x, z));
+        return new Sector(new Vector2i(x, z));
     }
 
     @Override
